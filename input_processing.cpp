@@ -19,13 +19,16 @@ bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col )
 }
 bool sink(const char board[NUM_ROWS][NUM_COLS], int row, int col, char ship) 
 {
-
+    /*
+    check right, left, up, and down from the guess and return true
+    if there are no charcters matching 'ship'
+    */
     return false;
 }
 void update_boards(char ships[NUM_ROWS][NUM_COLS],                  
                    char guesses[NUM_ROWS][NUM_COLS], char impact) 
 { 
 
-    
+
 }
 

@@ -26,6 +26,9 @@ bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col );
 bool sink(const char board[NUM_ROWS][NUM_COLS], int row, int col, char ship);
 void update_boards(char ships[NUM_ROWS][NUM_COLS],                  
                    char guesses[NUM_ROWS][NUM_COLS], char impact);
+void welcomeScreen();
+void initializeBoard(char array[][NUM_COLS]);
+void displayBoard(char array2[][NUM_COLS]); //need to add showShips parameter when we get further along in the program
 
 
 #endif

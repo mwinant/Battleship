@@ -19,6 +19,11 @@ int main()
     
     int row, col;  //player guesses for a location
 
+    welcomeScreen(); //Welcomes Player and Displays Rules
+    char board[NUM_ROWS][NUM_COLS];
+    initializeBoard(board);
+    displayBoard(board);
+
     //Main Game Loop
     while (1) {
 

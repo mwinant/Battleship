@@ -17,49 +17,58 @@ int main()
     char player1_guesses[NUM_ROWS][NUM_COLS];
     char player2_ships[NUM_ROWS][NUM_COLS];
     char player2_guesses[NUM_ROWS][NUM_COLS]; 
-    
-    int row;  //player guesses for a location
-    char col;
+    //initialized boards
+    initializeBoard(player1_ships);
+    initializeBoard(player1_guesses);
+    initializeBoard(player2_ships);
+    initializeBoard(player2_guesses);
 
-    //Main Game Loop
-    while (true) {
-        //initialized boards
-        initializeBoard(player1_ships);
-        initializeBoard(player1_guesses);
-        initializeBoard(player2_ships);
-        initializeBoard(player2_guesses);
+    welcomeScreen(); //Welcomes Player and Displays Rules
 
-        welcomeScreen(); //Welcomes Player and Displays Rules
+    int r1=0, r2=0, c1_int=0, c2_int=0;
+    char c1='a', c2='a', choice;
 
-        //TODO: Set ships on the boards with manual or auto option
-        int r1=0, r2=0;
-        char c1='a', c2='a';
-        int c1_int =0, c2_int=0;
-        char choice;
-        //TODO: Input validation on manual choices, make it look better, and fix placing ships
-        cout<<"Manual ship placement? (y/n): ";
-        cin>>choice;
-        if (choice == 'y') {
-            displayBoard(player1_ships);
-            for (int i=0; i<NUM_SHIPS; i++) {
+    //TODO: Set ships on the board with auto option and set player 2 ships
+    //TODO: If the user mixes up the char and int input there is a problem
+    cout<<"Manual ship placement? (y/n): ";
+    cin>>choice;
+    if (choice == 'y') {
+        displayBoard(player1_ships);
+        for (int i=0; i<NUM_SHIPS; i++) {
+            bool valid_length = false;
+            do {
                 cout<<"Enter a start and stop coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces): ";
                 cin>> r1>>c1>>r2>>c2;
-                char lc1 = tolower(c1);
-                c1_int = lc1 - 'a';         //convert character so it can be used as index in array
-                char lc2 = tolower(c2);
-                c2_int = lc2 - 'a';  
-                ship_placement(player1_ships, r1, c1_int, r2, c2_int, SHIP_SYMBOLS[i]);
-                displayBoard(player1_ships);
-            }
-        } else {
-            //auto ship placement
-            for (int i=0; i<NUM_SHIPS; i++){
-                //"randomly" get coordinates
-                
-                ship_placement(player1_ships, r1, c1, r2, c2, SHIP_SYMBOLS[i]);
-            }
+                c1_int = char_to_int(c1);       //convert character so it can be used as index in array
+                c2_int = char_to_int(c2);
+                //check for appropriate ship lengths
+                if (abs(r2-r1) == SHIP_SIZES[i]-1) {
+                    valid_length = true;
+                } if (abs(c2_int-c1_int) == SHIP_SIZES[i]-1) {
+                    if (valid_length==true) {   //disallows diagonal ship placments
+                        valid_length = false;
+                        cout<<"Ships can't be placed diagonally.\n";
+                    } else
+                        valid_length = true;
+                }
+            } while (!valid_guess(player1_ships, r1, c1_int) || !valid_guess(player1_ships, r2, c2_int) || !valid_length);  
+            ship_placement(player1_ships, r1, c1_int, r2, c2_int, SHIP_SYMBOLS[i]);
+            displayBoard(player1_ships);
         }
+    } else {
+        //auto ship placement
+        for (int i=0; i<NUM_SHIPS; i++){
+            //"randomly" get coordinates
+            
+            ship_placement(player1_ships, r1, c1, r2, c2, SHIP_SYMBOLS[i]);
+        }
+    }
+    
+    //Main Game Loop
+    while (true) {
 
+        int row;  //player guesses for a location
+        char col;
         int col_int = 0;
         while (true) {          //loop so player can continue if they get a hit
             displayBoard(player1_guesses);
@@ -67,8 +76,7 @@ int main()
                 //ask Player1 for guess
                 cout<<"Enter Guess(row, col): ";
                 cin>>row>>col;
-                char lcol = tolower(col);
-                col_int = lcol - 'a';         //convert character so it can be used as index in array
+                col_int = char_to_int(col);      //convert character so it can be used as index in array
             } while (!valid_guess(player2_ships, row, col_int));
 
             if (hit(player2_ships, row, col_int)) {

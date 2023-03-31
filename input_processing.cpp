@@ -99,4 +99,16 @@ void update_boards(char ships[NUM_ROWS][NUM_COLS], char guesses[NUM_ROWS][NUM_CO
     ships[row][col] = impact;
     guesses[row][col] = impact;
 }
-
+/**
+ * @brief Convert chars to ints. The columns on the boards will be entered as characters and they are converted 
+            here to ints so they are easier to work with.
+ * 
+ * @param c 
+ * @return int 
+ */
+int char_to_int(char c) 
+{
+    char lc = tolower(c);       //convert character to lower for consitency
+    int c_int = lc - 'a';       // use ASCII values to turn char into int that can be used as index for arry (a=0)
+    return c_int;
+}

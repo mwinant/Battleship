@@ -35,8 +35,10 @@ int main()
     if (choice == 'y') {
         displayBoard(player1_ships);
         for (int i=0; i<NUM_SHIPS; i++) {
-            bool valid_length = false;
+            bool valid_length, ship_intersect;
             do {
+                valid_length = false;
+                ship_intersect = false;
                 cout<<"Enter a start and stop coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces): ";
                 cin>> r1>>c1>>r2>>c2;
                 c1_int = char_to_int(c1);       //convert character so it can be used as index in array
@@ -51,8 +53,8 @@ int main()
                     } else
                         valid_length = true;
                 }
-            } while (!valid_guess(player1_ships, r1, c1_int) || !valid_guess(player1_ships, r2, c2_int) || !valid_length);  
-            ship_placement(player1_ships, r1, c1_int, r2, c2_int, SHIP_SYMBOLS[i]);
+                ship_intersect = ship_placement(player1_ships, r1, c1_int, r2, c2_int, SHIP_SYMBOLS[i]);
+            } while (!valid_guess(player1_ships, r1, c1_int) || !valid_guess(player1_ships, r2, c2_int) || !valid_length || ship_intersect);  
             displayBoard(player1_ships);
         }
     } else {

@@ -47,23 +47,64 @@ void displayBoard(char array2[][NUM_COLS])
 
 
 }
-void ship_placement(char ships[NUM_ROWS][NUM_COLS], int r1, int c1, int r2, int c2, char ship) 
+/**
+ * @brief Takes the start and stop coorinates and places ships in corresponding places, but
+            first detects if the ships will intersect.
+ * 
+ * @param ships 
+ * @param r1 
+ * @param c1 
+ * @param r2 
+ * @param c2 
+ * @param ship 
+ * @return true for an intersection
+ * @return false for no intersections
+ */
+bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int r1, int c1, int r2, int c2, char ship) 
 {
-    if (r2-r1 > 0) {
+    //dry run to chek for intersections
+    if (r2-r1 > 0) {            //placed top to bottom
+        for (int y=r1; y<=r2; y++) {
+            if (ships[y][c1] != OPEN_BOARD_SPACE) {
+                return true;
+            }
+        }  
+    } else if (r2-r1 <0) {         //placed bottom to top
+        for (int y=r1; y>=r2; y--) {
+            if ( ships[y][c1] != OPEN_BOARD_SPACE) {
+                return true;
+            }
+        }  
+    } else if (c2-c1 >0) {          //placed left to right
+        for (int x=c1; x<=c2; x++) {
+            if (ships[r1][x] != OPEN_BOARD_SPACE) {
+                return true;
+            }
+        }  
+    } else if (c2-c1 <0) {           //placed right to
+        for (int x=c1; x>=c2; x--) {
+            if (ships[r1][x] != OPEN_BOARD_SPACE) {
+                return true;
+            }
+        }  
+    }
+    //actually place the ships
+    if (r2-r1 > 0) {            //placed top to bottom
         for (int y=r1; y<=r2; y++) {
             ships[y][c1] = ship;
         }  
-    } else if (r2-r1 <0) {         
+    } else if (r2-r1 <0) {         //placed bottom to top
         for (int y=r1; y>=r2; y--) {
             ships[y][c1] = ship;
         }  
-    } else if (c2-c1 >0) {
+    } else if (c2-c1 >0) {          //placed left to right
         for (int x=c1; x<=c2; x++) {
             ships[r1][x] = ship;
         }  
-    }else if (c2-c1 <0) {          
+    } else if (c2-c1 <0) {           //placed right to
         for (int x=c1; x>=c2; x--) {
             ships[r1][x] = ship;
         }  
     }
+    return false;
 }

@@ -31,6 +31,6 @@ void update_boards(char ships[NUM_ROWS][NUM_COLS], char guesses[NUM_ROWS][NUM_CO
 void welcomeScreen();
 void initializeBoard(char array[][NUM_COLS]);
 void displayBoard(char array2[][NUM_COLS]); //need to add showShips parameter when we get further along in the program
-
+void ship_placement(char ships[NUM_ROWS][NUM_COLS], int r1, int c1, int r2, int c2, char ship);
 
 #endif

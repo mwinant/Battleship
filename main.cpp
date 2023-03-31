@@ -32,6 +32,33 @@ int main()
         welcomeScreen(); //Welcomes Player and Displays Rules
 
         //TODO: Set ships on the boards with manual or auto option
+        int r1=0, r2=0;
+        char c1='a', c2='a';
+        int c1_int =0, c2_int=0;
+        char choice;
+        //TODO: Input validation on manual choices, make it look better, and fix placing ships
+        cout<<"Manual ship placement? (y/n): ";
+        cin>>choice;
+        if (choice == 'y') {
+            displayBoard(player1_ships);
+            for (int i=0; i<NUM_SHIPS; i++) {
+                cout<<"Enter a start and stop coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces): ";
+                cin>> r1>>c1>>r2>>c2;
+                char lc1 = tolower(c1);
+                c1_int = lc1 - 'a';         //convert character so it can be used as index in array
+                char lc2 = tolower(c2);
+                c2_int = lc2 - 'a';  
+                ship_placement(player1_ships, r1, c1_int, r2, c2_int, SHIP_SYMBOLS[i]);
+                displayBoard(player1_ships);
+            }
+        } else {
+            //auto ship placement
+            for (int i=0; i<NUM_SHIPS; i++){
+                //"randomly" get coordinates
+                
+                ship_placement(player1_ships, r1, c1, r2, c2, SHIP_SYMBOLS[i]);
+            }
+        }
 
         int col_int = 0;
         while (true) {          //loop so player can continue if they get a hit
@@ -67,6 +94,7 @@ int main()
         
         
         break; //temp to avoid infinite loop;
+        system("clear");
     }
 
     return 0;

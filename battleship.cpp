@@ -47,3 +47,23 @@ void displayBoard(char array2[][NUM_COLS])
 
 
 }
+void ship_placement(char ships[NUM_ROWS][NUM_COLS], int r1, int c1, int r2, int c2, char ship) 
+{
+    if (r2-r1 > 0) {
+        for (int y=r1; y<=r2; y++) {
+            ships[y][c1] = ship;
+        }  
+    } else if (r2-r1 <0) {          //not working
+        for (int y=r2; y>=r1; y--) {
+            ships[y][c1] = ship;
+        }  
+    } else if (c2-c1 >0) {
+        for (int x=c1; x<=c2; x++) {
+            ships[r1][x] = ship;
+        }  
+    }else if (c2-c1 <0) {           //not working
+        for (int x=c2; x>=c1; x--) {
+            ships[r1][x] = ship;
+        }  
+    }
+}

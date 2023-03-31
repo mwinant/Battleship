@@ -34,3 +34,6 @@
 #exclude weird mac folder
 *.dSYM/
 
+#Debug folder
+.vscode/
+

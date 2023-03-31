@@ -22,7 +22,7 @@ void initializeBoard(char array[][NUM_COLS])
     {
         for (int y=0; y<10; y++) 
         {
-          array[x][y] = '-';
+          array[x][y] = OPEN_BOARD_SPACE;
         }     
     }  
 

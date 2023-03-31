@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+#exclude weird mac folder
+a.out.dSYM/
+

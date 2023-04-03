@@ -24,9 +24,11 @@ int main()
     initializeBoard(player2_guesses);
 
     welcomeScreen(); //Welcomes Player and Displays Rules
+    
+    srand(time(0)); 
 
-    int r1=0, r2=0, c1_int=0, c2_int=0;
-    char c1='a', c2='a', choice;
+    int r1=0, c1_int=0;
+    char c1='a', choice;
 
     //TODO: Set ships on the board with auto option and set player 2 ships
     //TODO: If the user mixes up the char and int input there is a problem
@@ -35,36 +37,30 @@ int main()
     if (choice == 'y') {
         displayBoard(player1_ships);
         for (int i=0; i<NUM_SHIPS; i++) {
-            bool valid_length, ship_intersect;
+            bool correct = false;
             do {
-                valid_length = false;
-                ship_intersect = false;
-                cout<<"Enter a start and stop coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces): ";
-                cin>> r1>>c1>>r2>>c2;
+                char direction;
+                cout << "Would you like your carrier placed horizontally or vertically?(h/v)";
+                cin >> direction;
+                cout<<"Enter a coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces, left to right if horizontal and top to bottom if vertical): ";
+                cin>>r1>>c1;
                 c1_int = char_to_int(c1);       //convert character so it can be used as index in array
-                c2_int = char_to_int(c2);
-                //check for appropriate ship lengths
-                if (abs(r2-r1) == SHIP_SIZES[i]-1) {
-                    valid_length = true;
-                } if (abs(c2_int-c1_int) == SHIP_SIZES[i]-1) {
-                    if (valid_length==true) {   //disallows diagonal ship placments
-                        valid_length = false;
-                        cout<<"Ships can't be placed diagonally.\n";
-                    } else
-                        valid_length = true;
+                char name = SHIP_SYMBOLS[i];
+                int size = SHIP_SIZES[i];
+                correct = ship_placement(player1_ships, r1, c1_int, direction, name, size);
+                if(correct==false){
+                    cout << "Invalid Placement, please try again\n";
                 }
-                ship_intersect = ship_placement(player1_ships, r1, c1_int, r2, c2_int, SHIP_SYMBOLS[i]);
-            } while (!valid_guess(player1_ships, r1, c1_int) || !valid_guess(player1_ships, r2, c2_int) || !valid_length || ship_intersect);  
+            } while (correct!=true);  
             displayBoard(player1_ships);
         }
     } else {
         //auto ship placement
-        for (int i=0; i<NUM_SHIPS; i++){
-            //"randomly" get coordinates
-            
-            ship_placement(player1_ships, r1, c1, r2, c2, SHIP_SYMBOLS[i]);
-        }
+        randomPlacement(player1_ships);
+        displayBoard(player1_ships);
     }
+    randomPlacement(player2_ships);
+    displayBoard(player2_ships);
     
     //Main Game Loop
     while (true) {
@@ -73,16 +69,17 @@ int main()
         char col;
         int col_int = 0;
         while (true) {          //loop so player can continue if they get a hit
+            cout << endl << endl;
             displayBoard(player1_guesses);
             do {
                 //ask Player1 for guess
                 cout<<"Enter Guess(row, col): ";
                 cin>>row>>col;
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
-            } while (!valid_guess(player2_ships, row, col_int));
+            } while (!valid_guess(player2_ships, row-1, col_int));
 
-            if (hit(player2_ships, row, col_int)) {
-                cout<<"That is a hit.";
+            if (hit(player2_ships, row-1, col_int)) {
+                cout<<"That is a hit./n";
                 //get the ship type that was just hit for use in checking for a sink
                 char ship_type = player2_ships[row-1][col_int-1];
                 update_boards(player2_ships, player1_guesses, HIT, row, col_int);
@@ -97,7 +94,6 @@ int main()
                 update_boards(player2_ships, player1_guesses, MISS, row, col_int);
                 displayBoard(player1_guesses);
                 cout<<"That is a miss.\n";
-                break;
             }
         }
         

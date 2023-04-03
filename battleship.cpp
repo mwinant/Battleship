@@ -29,7 +29,7 @@ void initializeBoard(char array[][NUM_COLS])
 }
 void displayBoard(char array2[][NUM_COLS])
 {
-    cout << "  ";
+    cout << "   ";
     for(char a='A'; a<='J'; a++)
     {
         cout << a << " " ;
@@ -37,7 +37,7 @@ void displayBoard(char array2[][NUM_COLS])
     cout << endl;
         for(int i=0; i<10; i++)
         {
-            cout << i << " "; //displays columns
+            cout << setw(2) << i+1 << " "; //displays columns
             for (int x=0; x<10; x++)
             {
                 cout << array2[i][x] << " ";
@@ -60,51 +60,70 @@ void displayBoard(char array2[][NUM_COLS])
  * @return true for an intersection
  * @return false for no intersections
  */
-bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int r1, int c1, int r2, int c2, char ship) 
+bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direction, char ship, int size) 
 {
-    //dry run to chek for intersections
-    if (r2-r1 > 0) {            //placed top to bottom
-        for (int y=r1; y<=r2; y++) {
-            if (ships[y][c1] != OPEN_BOARD_SPACE) {
-                return true;
+    if(direction == 'h'||direction == 'H'){
+        if(NUM_COLS-(col+size)>=0&&row>=0&&row<=NUM_ROWS){
+            for(int i = 0; i<size; i++){
+                int column = col+i;
+                if(ships[row-1][column]!='-'){
+                    return false;
+                }
             }
-        }  
-    } else if (r2-r1 <0) {         //placed bottom to top
-        for (int y=r1; y>=r2; y--) {
-            if ( ships[y][c1] != OPEN_BOARD_SPACE) {
-                return true;
+        }
+    } else if(direction == 'v'||direction == 'V'){
+        if(NUM_ROWS-(row+size)>=0&&col>=0&&col<=NUM_COLS-1){
+            for(int i = 0; i<size; i++){
+                int r = row+i-1;
+                if(ships[r][col]!='-'){
+                    return false;
+                }
             }
-        }  
-    } else if (c2-c1 >0) {          //placed left to right
-        for (int x=c1; x<=c2; x++) {
-            if (ships[r1][x] != OPEN_BOARD_SPACE) {
-                return true;
-            }
-        }  
-    } else if (c2-c1 <0) {           //placed right to
-        for (int x=c1; x>=c2; x--) {
-            if (ships[r1][x] != OPEN_BOARD_SPACE) {
-                return true;
-            }
-        }  
+        }
     }
-    //actually place the ships
-    if (r2-r1 > 0) {            //placed top to bottom
-        for (int y=r1; y<=r2; y++) {
-            ships[y][c1] = ship;
-        }  
-    } else if (r2-r1 <0) {         //placed bottom to top
-        for (int y=r1; y>=r2; y--) {
-            ships[y][c1] = ship;
-        }  
-    } else if (c2-c1 >0) {          //placed left to right
-        for (int x=c1; x<=c2; x++) {
-            ships[r1][x] = ship;
-        }  
-    } else if (c2-c1 <0) {           //placed right to
-        for (int x=c1; x>=c2; x--) {
-            ships[r1][x] = ship;
-        }  
+
+    if(direction == 'h'||direction == 'H'){
+        if(NUM_COLS-(col+size)>=0&&row>=0&&row<=NUM_ROWS){
+            for(int i = 0; i<size; i++){
+                int column = col+i;
+                ships[row-1][column]=ship;
+            }
+            return true;
+        }
+    } else if(direction == 'v'||direction == 'V'){
+        if(NUM_ROWS-(row+size-1)>=0&&col>=0&&col<=NUM_COLS-1){
+            for(int i = 0; i<size; i++){
+                int r = row-1+i;
+                ships[r][col]=ship;
+            }
+            return true;
+        }
     }
     return false;
+
+}
+void randomPlacement (char arr[NUM_ROWS][NUM_COLS]){
+                for (int i=0; i<NUM_SHIPS; i++){
+            bool valid;
+            do{
+                char name = SHIP_SYMBOLS[i];
+                char size = SHIP_SIZES[i];
+                int direction = rand()%3;
+                if(direction == 1){
+                    char dir = 'h';
+                    int col = rand()%10;
+                    int row = rand()%(10-size)+1;
+                    valid = ship_placement(arr, row, col, dir, name, size);
+                } else if (direction == 0) {
+                    char dir = 'v';
+                    int col = rand()%(10-size);
+                    int row = rand()%10+1;
+                    valid = ship_placement(arr, row, col, dir, name, size);
+                } else {
+                    valid = false;
+                }
+            } while (valid!=true);  
+
+        }
+
 }

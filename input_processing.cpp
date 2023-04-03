@@ -18,7 +18,7 @@
  */
 bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col)
 {
-    if (row<1 || row>NUM_ROWS || col<1 || col >NUM_COLS) {
+    if (row<1 || row>NUM_ROWS || col<0 || col >NUM_COLS) {
         return false;
     }
     //check for open board space
@@ -39,7 +39,7 @@ bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col)
 bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col )
 {
     for (int i=0; i<NUM_SHIPS; i++) {
-        if (board[row][col] ==SHIP_SYMBOLS[i]) {
+        if (board[row][col] ==SHIP_SYMBOLS[i]||board[row][col] =='*') {
             return true;
         }
     }

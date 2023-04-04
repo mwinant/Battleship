@@ -30,36 +30,54 @@ int main()
     int r1=0, c1_int=0;
     char c1='a', choice;
 
-    //TODO: Set ships on the board with auto option and set player 2 ships
     //TODO: If the user mixes up the char and int input there is a problem
-    cout<<"Manual ship placement? (y/n): ";
-    cin>>choice;
-    if (choice == 'y') {
-        displayBoard(player1_ships);
-        for (int i=0; i<NUM_SHIPS; i++) {
-            bool correct = false;
-            do {
-                char direction;
-                cout << "Would you like your carrier placed horizontally or vertically?(h/v)";
-                cin >> direction;
-                cout<<"Enter a coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces, left to right if horizontal and top to bottom if vertical): ";
-                cin>>r1>>c1;
-                c1_int = char_to_int(c1);       //convert character so it can be used as index in array
-                char name = SHIP_SYMBOLS[i];
-                int size = SHIP_SIZES[i];
-                correct = ship_placement(player1_ships, r1, c1_int, direction, name, size);
-                if(correct==false){
-                    cout << "Invalid Placement, please try again\n";
-                }
-            } while (correct!=true);  
+    bool placement = true;
+    do{
+        cout<<"Manual ship placement? (y/n): ";
+        cin>>choice;
+        if (choice == 'y') {
             displayBoard(player1_ships);
+            for (int i=0; i<NUM_SHIPS; i++) {
+                bool correct = false;
+                do {
+                    char direction;
+                    cout << "Would you like your carrier placed horizontally or vertically?(h/v)";
+                    cin >> direction;
+                    if(direction=='h'||direction=='H'||direction=='v'||direction=='V'){
+                        cout<<"Enter a coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces, left to right if horizontal and top to bottom if vertical): ";
+                        cin>>r1>>c1;
+                        if(cin.fail()){                     //runs if either input is invalid (if first input is invalid, second input is used 
+                            cout << "invalid\n";            //for start of next line, which would likely be invalid. this doesnt really matter
+                            cin.clear();                    //, but it'd probably be cleaner with a getline function and some delim stuff.)
+                            cin.sync();
+                            cin.ignore();
+                        } else {                            //runs if input is invalid
+                            c1_int = char_to_int(c1);       //convert character so it can be used as index in array
+                            char name = SHIP_SYMBOLS[i];
+                            int size = SHIP_SIZES[i];
+                            correct = ship_placement(player1_ships, r1, c1_int, direction, name, size);
+                            if(correct==false){
+                                cout << "Invalid Placement, please try again\n";
+                            }
+                        }
+                    } else { //runs if direction is invalid
+                        cout << "Invalid direction, please try again\n";
+                    }
+                } while (correct!=true);  
+                displayBoard(player1_ships); //displays where ship is placed
+            }
+        } else if (choice == 'n') {
+            //auto ship placement
+            randomPlacement(player1_ships);
+            displayBoard(player1_ships);
+        } else {
+            cout << "Invalid input, please try again\n";
+            placement = false;
         }
-    } else {
-        //auto ship placement
-        randomPlacement(player1_ships);
-        displayBoard(player1_ships);
-    }
+    } while (placement==false);
     randomPlacement(player2_ships);    //creates player 2 board
+
+    //TODO - remove this when main loop is totally finished
     displayBoard(player2_ships); //here to troubleshoot main game
     
     //Main Game Loop

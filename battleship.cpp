@@ -131,5 +131,4 @@ void randomPlacement (char arr[NUM_ROWS][NUM_COLS]){
             }
         } while (valid!=true);  
     }
-
 }

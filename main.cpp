@@ -59,8 +59,8 @@ int main()
         randomPlacement(player1_ships);
         displayBoard(player1_ships);
     }
-    randomPlacement(player2_ships);
-    displayBoard(player2_ships);
+    randomPlacement(player2_ships);    //creates player 2 board
+    displayBoard(player2_ships); //here to troubleshoot main game
     
     //Main Game Loop
     while (true) {

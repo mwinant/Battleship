@@ -48,21 +48,22 @@ void displayBoard(char array2[][NUM_COLS])
 
 }
 /**
- * @brief Takes the start and stop coorinates and places ships in corresponding places, but
-            first detects if the ships will intersect.
+ * @brief takes coordinate and places ships in corresponding places, but
+ *        first detects if the ships will intersect.
  * 
- * @param ships 
- * @param r1 
- * @param c1 
- * @param r2 
- * @param c2 
- * @param ship 
+ * @param ships array that ships will be placed on
+ * @param row row ship will be placed on
+ * @param col column ship will be placed on
+ * @param direction which direction to build out the rest of ship
+ * @param ship ship character to replace '-'
+ * @param size how many spaces will be modified from row/column
  * @return true for an intersection
  * @return false for no intersections
  */
 bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direction, char ship, int size) 
 {
-    if(direction == 'h'||direction == 'H'){
+    //checks to see if there are any intersections
+    if(direction == 'h'||direction == 'H'){                     //horizontal check
         if(NUM_COLS-(col+size)>=0&&row>=0&&row<=NUM_ROWS){
             for(int i = 0; i<size; i++){
                 int column = col+i;
@@ -71,7 +72,7 @@ bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direc
                 }
             }
         }
-    } else if(direction == 'v'||direction == 'V'){
+    } else if(direction == 'v'||direction == 'V'){              //vertical check
         if(NUM_ROWS-(row+size)>=0&&col>=0&&col<=NUM_COLS-1){
             for(int i = 0; i<size; i++){
                 int r = row+i-1;
@@ -82,7 +83,8 @@ bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direc
         }
     }
 
-    if(direction == 'h'||direction == 'H'){
+    //places ships if there are no intersections
+    if(direction == 'h'||direction == 'H'){                     //horizontal placement
         if(NUM_COLS-(col+size)>=0&&row>=0&&row<=NUM_ROWS){
             for(int i = 0; i<size; i++){
                 int column = col+i;
@@ -90,7 +92,7 @@ bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direc
             }
             return true;
         }
-    } else if(direction == 'v'||direction == 'V'){
+    } else if(direction == 'v'||direction == 'V'){              //vertical placement
         if(NUM_ROWS-(row+size-1)>=0&&col>=0&&col<=NUM_COLS-1){
             for(int i = 0; i<size; i++){
                 int r = row-1+i;
@@ -102,28 +104,32 @@ bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direc
     return false;
 
 }
+/**
+ * @brief Places ships randomly on the board, us
+ * 
+ * @param arr array to be modified with placed ships
+ */
 void randomPlacement (char arr[NUM_ROWS][NUM_COLS]){
-                for (int i=0; i<NUM_SHIPS; i++){
-            bool valid;
-            do{
-                char name = SHIP_SYMBOLS[i];
-                char size = SHIP_SIZES[i];
-                int direction = rand()%3;
-                if(direction == 1){
-                    char dir = 'h';
-                    int col = rand()%10;
-                    int row = rand()%(10-size)+1;
-                    valid = ship_placement(arr, row, col, dir, name, size);
-                } else if (direction == 0) {
-                    char dir = 'v';
-                    int col = rand()%(10-size);
-                    int row = rand()%10+1;
-                    valid = ship_placement(arr, row, col, dir, name, size);
-                } else {
-                    valid = false;
-                }
-            } while (valid!=true);  
-
-        }
+    for (int i=0; i<NUM_SHIPS; i++){
+        bool valid;
+        do{
+            char name = SHIP_SYMBOLS[i];
+            char size = SHIP_SIZES[i];
+            int direction = rand()%3;
+            if(direction == 1){
+                char dir = 'h';
+                int col = rand()%10; //random column
+                int row = rand()%(10-size)+1; //random row
+                valid = ship_placement(arr, row, col, dir, name, size); //places random column and row using ship placement function
+            } else if (direction == 0) {
+                char dir = 'v';
+                int col = rand()%(10-size);
+                int row = rand()%10+1;
+                valid = ship_placement(arr, row, col, dir, name, size);
+            } else {
+                valid = false;
+            }
+        } while (valid!=true);  
+    }
 
 }

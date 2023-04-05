@@ -41,7 +41,7 @@ int main()
                 bool correct = false;
                 do {
                     char direction;
-                    cout << "Would you like your carrier placed horizontally or vertically?(h/v)";
+                    cout << "Would you like your "<<SHIP_NAMES[i]<<" placed horizontally or vertically?(h/v)";
                     cin >> direction;
                     if(direction=='h'||direction=='H'||direction=='v'||direction=='V'){
                         cout<<"Enter a coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces, left to right if horizontal and top to bottom if vertical): ";

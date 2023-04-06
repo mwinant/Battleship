@@ -1,6 +1,11 @@
 #include "battleship.h"
 
 //FUNCTIONS
+
+/**
+ * @brief Displays welcome screen and rules to user
+ * 
+ */
 void welcomeScreen()
 {
     cout << "***** Welcome to Battleship! *****\n\n";
@@ -15,6 +20,11 @@ void welcomeScreen()
     cout << "Have fun!\n\n";
 
 }
+/**
+ * @brief initializes game board
+ * 
+ * @param array 
+ */
 void initializeBoard(char array[][NUM_COLS])
 {
       // create a blank board   
@@ -27,6 +37,11 @@ void initializeBoard(char array[][NUM_COLS])
     }  
 
 }
+/**
+ * @brief adds rows and column names to board
+ * 
+ * @param array2 
+ */
 void displayBoard(char array2[][NUM_COLS])
 {
     cout << "   ";

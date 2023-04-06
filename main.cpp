@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @author Wade, Quinton, Mickayla
+ * @author Wade, Quinton, Mikayla
  * @brief 
  * @date 2023-03-22
  */
@@ -91,7 +91,7 @@ int main()
             displayBoard(player1_guesses);
             do {
                 //ask Player1 for guess
-                cout<<"Enter Guess(row, col): ";
+                cout<<"Enter Guess(row col): ";
                 cin>>row>>col;
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
             } while (!valid_guess(player2_ships, row-1, col_int));
@@ -111,7 +111,7 @@ int main()
             } else {
                 update_boards(player2_ships, player1_guesses, MISS, row, col_int);
                 displayBoard(player1_guesses);
-                cout<<"That is a miss.\n";
+                cout<<"That is a miss.\n"; 
             }
         }
         

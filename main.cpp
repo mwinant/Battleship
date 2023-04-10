@@ -86,13 +86,15 @@ int main()
 
     //TODO - remove this when main loop is totally finished
     displayBoard(player2_ships); //here to troubleshoot main game
-    
+
     //Main Game Loop
     while (true) {
 
         int row;  //player guesses for a location
         char col;
         int col_int = 0;
+        if (selectWhoStartsFirst()==1)
+        {
         displayBoard(player1_guesses);
         while (true) {          //loop so player can continue if they get a hit
             cout << endl << endl;
@@ -101,7 +103,7 @@ int main()
                 cout<<"Enter Guess(row col): ";
                 cin>>row>>col;
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
-            } while (!valid_guess(player2_ships, row, col_int));
+            } while (!valid_guess(player1_guesses, row, col_int));
 
             if (hit(player2_ships, row, col_int)) {
                 cout<<"That is a hit.\n";
@@ -125,6 +127,7 @@ int main()
                 displayBoard(player1_guesses);
                 cout<<"That is a miss.\n"; 
             }
+        }
         }
         
         

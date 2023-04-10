@@ -12,6 +12,12 @@ using namespace std;
 
 int main() 
 {   
+    //ship number counts and icon arrays to validate if ships have sunk
+    int p1Ships = 5;
+    int p2Ships = 5;
+    char p1ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
+    char p2ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
+
     //Game board arrays
     char player1_ships[NUM_ROWS][NUM_COLS];
     char player1_guesses[NUM_ROWS][NUM_COLS];
@@ -22,6 +28,7 @@ int main()
     initializeBoard(player1_guesses);
     initializeBoard(player2_ships);
     initializeBoard(player2_guesses);
+
 
     welcomeScreen(); //Welcomes Player and Displays Rules
     
@@ -104,10 +111,15 @@ int main()
                 char ship_type = player2_ships[row-1][col_int-1];
                 update_boards(player2_ships, player1_guesses, HIT, row, col_int);
                 displayBoard(player1_guesses);
-                if (sink(player2_ships, row, col_int, ship_type)) {
+                int sunk = sink(player2_ships, p2ShipIcons, p2Ships);
+                if (sunk>0) {
                     //tell player they sunk the corresponding ship
                     //TODO:Function that converts ship symbol to ship type or better way
-                    cout<<"You sunk their "<<"TODO"<<endl;
+                    cout<<"You sunk their "<<SHIP_NAMES[sunk]<<endl;
+                }
+                if(p1Ships==0||p2Ships==0){
+                    cout << "\nCongradulations! You win! You're a 5-Star Admiral!\n";
+                    return 0;
                 }
                 continue;  //allows player1 do go again if they hit
             } else {

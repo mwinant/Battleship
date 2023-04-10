@@ -176,3 +176,10 @@ void playerTurn(int player)
     
         
 
+
+
+void shipSymbolsToCheck(char array [NUM_SHIPS]){
+    for(int i = 0; i < NUM_SHIPS; i++){
+        array [i] = SHIP_SYMBOLS[i];
+    }
+}

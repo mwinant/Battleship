@@ -111,11 +111,12 @@ int main()
                 char ship_type = player2_ships[row-1][col_int-1];
                 update_boards(player2_ships, player1_guesses, HIT, row, col_int);
                 displayBoard(player1_guesses);
-                int sunk = sink(player2_ships, p2ShipIcons, p2Ships);
-                if (sunk>0) {
+                int sunk = sink(player2_ships, p2ShipIcons);
+                if (sunk>-1) {
                     //tell player they sunk the corresponding ship
                     //TODO:Function that converts ship symbol to ship type or better way
                     cout<<"You sunk their "<<SHIP_NAMES[sunk]<<endl;
+                    p2Ships--;
                 }
                 if(p1Ships==0||p2Ships==0){
                     cout << "\nCongradulations! You win! You're a 5-Star Admiral!\n";

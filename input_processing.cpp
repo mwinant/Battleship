@@ -58,10 +58,9 @@ bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col )
  * @return true 
  * @return false when there is a ship symbol remaining matching the ship that was hit
  */
-int sink(const char board[NUM_ROWS][NUM_COLS], char shipIcons[NUM_SHIPS], int numShips) 
+int sink(const char board[NUM_ROWS][NUM_COLS], char shipIcons[NUM_SHIPS]) 
 {
-    int numOfShips = numShips;
-    for(int i = 0; i < numOfShips; i++){
+    for(int i = 0; i < NUM_SHIPS; i++){
         for(int row = 0; row < NUM_ROWS; row++){
             for(int col = 0; col < NUM_COLS; col++){
                 if(board[row][col] == shipIcons[i]){
@@ -70,11 +69,10 @@ int sink(const char board[NUM_ROWS][NUM_COLS], char shipIcons[NUM_SHIPS], int nu
             }
         }
         shipIcons[i] = '*';
-        numShips--;
         return i;
         SKIP: continue;
     }
-    return 0;
+    return -1;
 }
 /**
  * @brief Update the two boards that are of concern during a turn

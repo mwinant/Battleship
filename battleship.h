@@ -25,7 +25,7 @@ const int SHIP_SIZES[] = {5, 4, 3, 3, 2};
 //Function Prototypes
 bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col);
 bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col );
-int sink(const char board[NUM_ROWS][NUM_COLS], char shipIcons[NUM_SHIPS], int numShips);
+int sink(const char board[NUM_ROWS][NUM_COLS], char shipIcons[NUM_SHIPS]);
 void update_boards(char ships[NUM_ROWS][NUM_COLS], char guesses[NUM_ROWS][NUM_COLS], 
                    char impact, int row, int col);
 void welcomeScreen();

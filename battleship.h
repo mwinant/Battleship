@@ -25,7 +25,7 @@ const int SHIP_SIZES[] = {5, 4, 3, 3, 2};
 //Function Prototypes
 bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col);
 bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col );
-bool sink(const char board[NUM_ROWS][NUM_COLS], int row, int col, char ship);
+int sink(const char board[NUM_ROWS][NUM_COLS], char shipIcons[NUM_SHIPS], int numShips);
 void update_boards(char ships[NUM_ROWS][NUM_COLS], char guesses[NUM_ROWS][NUM_COLS], 
                    char impact, int row, int col);
 void welcomeScreen();
@@ -34,6 +34,6 @@ void displayBoard(char array2[][NUM_COLS]); //need to add showShips parameter wh
 bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direction, char ship, int size);
 void randomPlacement (char arr[NUM_ROWS][NUM_COLS]);
 int char_to_int(char c);
-
+void win (int numShips);
 
 #endif

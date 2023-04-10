@@ -93,6 +93,7 @@ int main()
         int row;  //player guesses for a location
         char col;
         int col_int = 0;
+        //PLAYER 1
         if (selectWhoStartsFirst()==1)
         {
         displayBoard(player1_guesses);
@@ -130,8 +131,11 @@ int main()
             }
         }
         }
-        else
+        //PLAYER 2
+        else 
         {
+            generateRandomRow();
+            generateRandomCol();
 
         }
         

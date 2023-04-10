@@ -147,6 +147,11 @@ void randomPlacement (char arr[NUM_ROWS][NUM_COLS]){
         } while (valid!=true);  
     }
 }
+/**
+ * @brief randomly selects which player goes first at the start of the game
+ * 
+ * @return int 
+ */
 int selectWhoStartsFirst()
 {
     srand( time(NULL) );
@@ -154,6 +159,29 @@ int selectWhoStartsFirst()
     int player=a+1;
     cout<< "Player "<<player<< "goes first!\n";
     return player;
+}
+/**
+ * @brief generates random row for Player 2
+ * 
+ * @return char 
+ */
+char generateRandomRow() //A-J
+{
+    char row[]={'A', 'B', 'C', 'D', 'E', 'F', 'G','H', 'I'};
+    int r=rand()%10;
+    return row[r];
+
+}
+/**
+ * @brief Generates random column for Player 2
+ * 
+ * @return int 
+ */
+int generateRandomCol() //0-9
+{
+    int col=rand()%10;
+    return col;
+
 }
 void playerTurn(int player)
 {

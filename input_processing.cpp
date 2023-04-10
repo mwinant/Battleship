@@ -19,11 +19,11 @@
 bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col)
 {
     //row -=1;
-    if (row<1 || row>NUM_ROWS || col<0 || col >NUM_COLS) {
+    if (row<1 || row>NUM_ROWS || col<0 || col >NUM_COLS-1) {
         return false;
     }
     //check for open board space
-    if (board[row-1][col-1] != OPEN_BOARD_SPACE) {
+    if (board[row-1][col] != OPEN_BOARD_SPACE) {
         return false;
     }
     return true;

@@ -94,7 +94,7 @@ int main()
                 cout<<"Enter Guess(row col): ";
                 cin>>row>>col;
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
-            } while (!valid_guess(player2_ships, row, col_int));
+            } while (!valid_guess(player1_guesses, row, col_int));
 
             if (hit(player2_ships, row, col_int)) {
                 cout<<"That is a hit.\n";

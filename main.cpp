@@ -79,13 +79,15 @@ int main()
 
     //TODO - remove this when main loop is totally finished
     displayBoard(player2_ships); //here to troubleshoot main game
-    
+
     //Main Game Loop
     while (true) {
 
         int row;  //player guesses for a location
         char col;
         int col_int = 0;
+        if (selectWhoStartsFirst()==1)
+        {
         displayBoard(player1_guesses);
         while (true) {          //loop so player can continue if they get a hit
             cout << endl << endl;
@@ -113,6 +115,7 @@ int main()
                 displayBoard(player1_guesses);
                 cout<<"That is a miss.\n"; 
             }
+        }
         }
         
         

@@ -147,3 +147,29 @@ void randomPlacement (char arr[NUM_ROWS][NUM_COLS]){
         } while (valid!=true);  
     }
 }
+int selectWhoStartsFirst()
+{
+    srand( time(NULL) );
+    int a=rand()%2;
+    int player=a+1;
+    cout<< "Player "<<player<< "goes first!\n";
+    return player;
+}
+void playerTurn(int player)
+{
+
+    switch(player)
+    {
+    case 1:
+    {
+
+    }
+    case 2:
+    {
+
+    }
+    }
+}
+    
+        
+

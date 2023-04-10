@@ -163,11 +163,14 @@ void playerTurn(int player)
     case 1:
     {
 
+       
     }
+          
     case 2:
     {
 
     }
+
     }
 }
     

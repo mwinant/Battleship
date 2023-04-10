@@ -86,18 +86,18 @@ int main()
         int row;  //player guesses for a location
         char col;
         int col_int = 0;
+        displayBoard(player1_guesses);
         while (true) {          //loop so player can continue if they get a hit
             cout << endl << endl;
-            displayBoard(player1_guesses);
             do {
                 //ask Player1 for guess
                 cout<<"Enter Guess(row col): ";
                 cin>>row>>col;
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
-            } while (!valid_guess(player2_ships, row-1, col_int));
+            } while (!valid_guess(player2_ships, row, col_int));
 
-            if (hit(player2_ships, row-1, col_int)) {
-                cout<<"That is a hit./n";
+            if (hit(player2_ships, row, col_int)) {
+                cout<<"That is a hit.\n";
                 //get the ship type that was just hit for use in checking for a sink
                 char ship_type = player2_ships[row-1][col_int-1];
                 update_boards(player2_ships, player1_guesses, HIT, row, col_int);

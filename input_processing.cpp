@@ -18,6 +18,7 @@
  */
 bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col)
 {
+    //row -=1;
     if (row<1 || row>NUM_ROWS || col<0 || col >NUM_COLS) {
         return false;
     }
@@ -38,6 +39,7 @@ bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col)
  */
 bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col )
 {
+    row -=1;
     for (int i=0; i<NUM_SHIPS; i++) {
         if (board[row][col] ==SHIP_SYMBOLS[i]||board[row][col] =='*') {
             return true;
@@ -58,6 +60,7 @@ bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col )
  */
 bool sink(const char board[NUM_ROWS][NUM_COLS], int row, int col, char ship) 
 {
+    row -=1;
     /*
     check right, left, up, and down from the guess and return true
     if there are no charcters matching 'ship'
@@ -96,6 +99,7 @@ bool sink(const char board[NUM_ROWS][NUM_COLS], int row, int col, char ship)
 void update_boards(char ships[NUM_ROWS][NUM_COLS], char guesses[NUM_ROWS][NUM_COLS], 
                   char impact, int row, int col) 
 { 
+    row-=1;
     ships[row][col] = impact;
     guesses[row][col] = impact;
 }

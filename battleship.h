@@ -36,8 +36,8 @@ void randomPlacement (char arr[NUM_ROWS][NUM_COLS]);
 int char_to_int(char c);
 int selectWhoStartsFirst();
 void playerTurn(int player);
-char generateRandomRow();
-int generateRandomCol();
+char generateRandomCol();
+int generateRandomRow();
 
 
 

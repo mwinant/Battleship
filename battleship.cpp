@@ -157,30 +157,30 @@ int selectWhoStartsFirst()
     srand( time(NULL) );
     int a=rand()%2;
     int player=a+1;
-    cout<< "Player "<<player<< "goes first!\n";
+    cout<< endl<<"Player "<<player<< " goes first!\n";
     return player;
 }
 /**
- * @brief generates random row for Player 2
+ * @brief generates random column for Player 2
  * 
  * @return char 
  */
-char generateRandomRow() //A-J
+char generateRandomCol() //A-J
 {
-    char row[]={'A', 'B', 'C', 'D', 'E', 'F', 'G','H', 'I'};
+    char col[]={'A', 'B', 'C', 'D', 'E', 'F', 'G','H', 'I', 'J'};
     int r=rand()%10;
-    return row[r];
+    return col[r];
 
 }
 /**
- * @brief Generates random column for Player 2
+ * @brief Generates random row for Player 2
  * 
  * @return int 
  */
-int generateRandomCol() //0-9
+int generateRandomRow() //0-9
 {
-    int col=rand()%10;
-    return col;
+    int row=rand()%10;
+    return row;
 
 }
 void playerTurn(int player)

@@ -134,15 +134,15 @@ int main()
         //PLAYER 2
         else 
         {
-            char row2;
-            int col2;
-            int row_int;
+            char col2;
+            int row2;
+            int col_int;
             do
             {
                 row2=generateRandomRow();
                 col2=generateRandomCol();
-                row_int = char_to_int(row2);
-            }while(!valid_guess(player1_ships, row_int, col2));
+                col_int = char_to_int(col2);
+            }while(!valid_guess(player1_ships, col2, col_int));
             
         }
         

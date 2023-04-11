@@ -134,9 +134,16 @@ int main()
         //PLAYER 2
         else 
         {
-            generateRandomRow();
-            generateRandomCol();
-
+            char row2;
+            int col2;
+            int row_int;
+            do
+            {
+                row2=generateRandomRow();
+                col2=generateRandomCol();
+                row_int = char_to_int(row2);
+            }while(!valid_guess(player1_ships, row_int, col2));
+            
         }
         
         

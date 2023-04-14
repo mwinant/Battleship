@@ -87,6 +87,8 @@ int main()
     //TODO - remove this when main loop is totally finished
     displayBoard(player2_ships); //here to troubleshoot main game
 
+    int player = selectWhoStartsFirst();
+
     //Main Game Loop
     while (true) 
     {
@@ -95,42 +97,43 @@ int main()
         char col;
         int col_int = 0;
         //PLAYER 1
-        if (selectWhoStartsFirst()==1)
+        if (player==1)
         {
-        displayBoard(player1_guesses);
-        while (true) {          //loop so player can continue if they get a hit
-            cout << endl << endl;
-            do {
-                //ask Player1 for guess
-                cout<<"Enter Guess(row col): ";
-                cin>>row>>col;
-                col_int = char_to_int(col);      //convert character so it can be used as index in array
-            } while (!valid_guess(player2_ships, row, col_int));
+            displayBoard(player1_guesses);
+            while (true) {          //loop so player can continue if they get a hit
+                cout << endl << endl;
+                do {
+                    //ask Player1 for guess
+                    cout<<"Enter Guess(row col): ";
+                    cin>>row>>col;
+                    col_int = char_to_int(col);      //convert character so it can be used as index in array
+                } while (!valid_guess(player2_ships, row, col_int));
 
-            if (hit(player2_ships, row, col_int)) {
-                cout<<"That is a hit.\n";
-                //get the ship type that was just hit for use in checking for a sink
-                char ship_type = player2_ships[row-1][col_int-1];
-                update_boards(player2_ships, player1_guesses, HIT, row, col_int);
-                displayBoard(player1_guesses);
-                int sunk = sink(player2_ships, p2ShipIcons);
-                if (sunk>-1) {
-                    //tell player they sunk the corresponding ship
-                    //TODO:Function that converts ship symbol to ship type or better way
-                    cout<<"You sunk their "<<SHIP_NAMES[sunk]<<endl;
-                    p2Ships--;
+                if (hit(player2_ships, row, col_int)) {
+                    cout<<"That is a hit.\n";
+                    //get the ship type that was just hit for use in checking for a sink
+                    char ship_type = player2_ships[row-1][col_int-1];
+                    update_boards(player2_ships, player1_guesses, HIT, row, col_int);
+                    displayBoard(player1_guesses);
+                    int sunk = sink(player2_ships, p2ShipIcons);
+                    if (sunk>-1) {
+                        //tell player they sunk the corresponding ship
+                        //TODO:Function that converts ship symbol to ship type or better way
+                        cout<<"You sunk their "<<SHIP_NAMES[sunk]<<endl;
+                        p2Ships--;
+                    }
+                    if(p1Ships==0||p2Ships==0){
+                        cout << "\nCongradulations! You win! You're a 5-Star Admiral!\n";
+                        return 0;
+                    }
+                    continue;  //allows player1 do go again if they hit
+                } else {
+                    update_boards(player2_ships, player1_guesses, MISS, row, col_int);
+                    displayBoard(player1_guesses);
+                    cout<<"That is a miss.\n"; 
                 }
-                if(p1Ships==0||p2Ships==0){
-                    cout << "\nCongradulations! You win! You're a 5-Star Admiral!\n";
-                    return 0;
-                }
-                continue;  //allows player1 do go again if they hit
-            } else {
-                update_boards(player2_ships, player1_guesses, MISS, row, col_int);
-                displayBoard(player1_guesses);
-                cout<<"That is a miss.\n"; 
             }
-        }
+            player++;
         }
         //PLAYER 2
         else 
@@ -156,6 +159,7 @@ int main()
                 update_boards(player1_ships, player2_guesses, MISS, row2, col_int2);
                 cout << "Player2 missed, your turn!\n";
             }
+            player--;
         }
         
         

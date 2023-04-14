@@ -88,7 +88,8 @@ int main()
     displayBoard(player2_ships); //here to troubleshoot main game
 
     //Main Game Loop
-    while (true) {
+    while (true) 
+    {
 
         int row;  //player guesses for a location
         char col;
@@ -134,23 +135,33 @@ int main()
         //PLAYER 2
         else 
         {
+            cout<< "It is Player2's turn.\n";
             char col2;
             int row2;
-            int col_int;
+            int col_int2;
             do
             {
                 row2=generateRandomRow();
                 col2=generateRandomCol();
-                col_int = char_to_int(col2);
-            }while(!valid_guess(player1_ships, col2, col_int));
+                col_int2 = char_to_int(col2);
+            }while(!valid_guess(player1_ships, row2, col_int2));
             
+            if (hit(player1_ships, row2, col_int2)) {
+                //get the ship type that was just hit for use in checking for a sink
+                update_boards(player1_ships, player2_guesses, HIT, row2, col_int2);
+                cout<< "Player2 got a hit!\n";
+            //TODO write code for if player 1 loses
+                continue;  //allows player2 do go again if they hit
+            } else {
+                update_boards(player1_ships, player2_guesses, MISS, row2, col_int2);
+                cout << "Player2 missed, your turn!\n";
+            }
         }
         
         
         
-        break; //temp to avoid infinite loop;
-        system("clear");
+    
     }
-
+    system("clear");
     return 0;
 }

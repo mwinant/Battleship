@@ -183,28 +183,6 @@ int generateRandomRow() //0-9
     return row;
 
 }
-void playerTurn(int player)
-{
-
-    switch(player)
-    {
-    case 1:
-    {
-
-       
-    }
-          
-    case 2:
-    {
-
-    }
-
-    }
-}
-    
-        
-
-
 
 void shipSymbolsToCheck(char array [NUM_SHIPS]){
     for(int i = 0; i < NUM_SHIPS; i++){

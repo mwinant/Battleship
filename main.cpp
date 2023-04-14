@@ -11,12 +11,14 @@
 using namespace std;
 
 int main() 
-{   
+{  
+    /* 
     //ship number counts and icon arrays to validate if ships have sunk
     int p1Ships = 5;
     int p2Ships = 5;
     char p1ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
     char p2ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
+    */
 
     //Game board arrays
     char player1_ships[NUM_ROWS][NUM_COLS];
@@ -86,6 +88,12 @@ int main()
 
     //TODO - remove this when main loop is totally finished
     displayBoard(player2_ships); //here to troubleshoot main game
+      
+    //ship number counts and icon arrays to validate if ships have sunk
+    int p1Ships = 5;
+    int p2Ships = 5;
+    char p1ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
+    char p2ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
 
     int player = selectWhoStartsFirst();
 
@@ -93,76 +101,22 @@ int main()
     while (true) 
     {
 
-        int row;  //player guesses for a location
-        char col;
-        int col_int = 0;
         //PLAYER 1
         if (player==1)
         {
-            displayBoard(player1_guesses);
-            while (true) {          //loop so player can continue if they get a hit
-                cout << endl << endl;
-                do {
-                    //ask Player1 for guess
-                    cout<<"Enter Guess(row col): ";
-                    cin>>row>>col;
-                    col_int = char_to_int(col);      //convert character so it can be used as index in array
-                } while (!valid_guess(player2_ships, row, col_int));
-
-                if (hit(player2_ships, row, col_int)) {
-                    cout<<"That is a hit.\n";
-                    //get the ship type that was just hit for use in checking for a sink
-                    char ship_type = player2_ships[row-1][col_int-1];
-                    update_boards(player2_ships, player1_guesses, HIT, row, col_int);
-                    displayBoard(player1_guesses);
-                    int sunk = sink(player2_ships, p2ShipIcons);
-                    if (sunk>-1) {
-                        //tell player they sunk the corresponding ship
-                        //TODO:Function that converts ship symbol to ship type or better way
-                        cout<<"You sunk their "<<SHIP_NAMES[sunk]<<endl;
-                        p2Ships--;
-                    }
-                    if(p1Ships==0||p2Ships==0){
-                        cout << "\nCongradulations! You win! You're a 5-Star Admiral!\n";
-                        return 0;
-                    }
-                    continue;  //allows player1 do go again if they hit
-                } else {
-                    update_boards(player2_ships, player1_guesses, MISS, row, col_int);
-                    displayBoard(player1_guesses);
-                    cout<<"That is a miss.\n"; 
-                }
-            }
+            player_turn(player1_guesses,player2_ships, player, p2Ships, p2ShipIcons);
+            
             player++;
         }
         //PLAYER 2
         else 
         {
-            cout<< "It is Player2's turn.\n";
-            char col2;
-            int row2;
-            int col_int2;
-            do
-            {
-                row2=generateRandomRow();
-                col2=generateRandomCol();
-                col_int2 = char_to_int(col2);
-            }while(!valid_guess(player1_ships, row2, col_int2));
-            
-            if (hit(player1_ships, row2, col_int2)) {
-                //get the ship type that was just hit for use in checking for a sink
-                update_boards(player1_ships, player2_guesses, HIT, row2, col_int2);
-                cout<< "Player2 got a hit!\n";
-            //TODO write code for if player 1 loses
-                continue;  //allows player2 do go again if they hit
-            } else {
-                update_boards(player1_ships, player2_guesses, MISS, row2, col_int2);
-                cout << "Player2 missed, your turn!\n";
-            }
+            cout<<endl<< "It is Player2's turn.\n";
+
+            player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons);
+           
             player--;
         }
-        
-        
         
     
     }

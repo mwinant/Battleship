@@ -41,7 +41,7 @@ bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col )
 {
     row -=1;
     for (int i=0; i<NUM_SHIPS; i++) {
-        if (board[row][col] ==SHIP_SYMBOLS[i]||board[row][col] =='*') {
+        if (board[row][col] ==SHIP_SYMBOLS[i]||board[row][col] =='*') {  
             return true;
         }
     }

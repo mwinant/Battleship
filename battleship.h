@@ -35,11 +35,10 @@ bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direc
 void randomPlacement (char arr[NUM_ROWS][NUM_COLS]);
 int char_to_int(char c);
 int selectWhoStartsFirst();
-void playerTurn(int player);
 char generateRandomCol();
 int generateRandomRow();
-
-
+void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, char remaining_ship_icons[NUM_SHIPS]);
+void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships);
 
 
 #endif

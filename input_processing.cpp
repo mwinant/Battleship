@@ -41,7 +41,7 @@ bool hit(const char board[NUM_ROWS][NUM_COLS], int row, int col )
 {
     row -=1;
     for (int i=0; i<NUM_SHIPS; i++) {
-        if (board[row][col] ==SHIP_SYMBOLS[i]||board[row][col] =='*') {  
+        if (board[row][col] ==SHIP_SYMBOLS[i]) {  
             return true;
         }
     }
@@ -102,4 +102,45 @@ int char_to_int(char c)
     char lc = tolower(c);       //convert character to lower for consitency
     int c_int = lc - 'a';       // use ASCII values to turn char into int that can be used as index for arry (a=0)
     return c_int;
+}
+/**
+ * @brief Gets called if player selects manual placement
+ * 
+ * @param player1_ships 
+ */
+void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS])
+{
+    int r1=0, c1_int=0;
+    char c1='a';
+
+    for (int i=0; i<NUM_SHIPS; i++) {
+        bool correct = false;
+        do {
+            char direction;
+            cout << "Would you like your "<<SHIP_NAMES[i]<<" placed horizontally or vertically?(h/v)";
+            cin >> direction;
+            if(direction=='h'||direction=='H'||direction=='v'||direction=='V'){
+                cout<<"Enter a coordinate for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces, left to right if horizontal and top to bottom if vertical): ";
+                cin>>r1>>c1;
+                if(cin.fail()){                     //runs if either input is invalid (if first input is invalid, second input is used 
+                    cout << "Invalid\n";            //for start of next line, which would likely be invalid. this doesnt really matter
+                    cin.clear();                    //, but it'd probably be cleaner with a getline function and some delim stuff.)
+                    cin.sync();
+                    cin.ignore();
+                    //correct = false;
+                } else {                            //runs if input is invalid
+                    c1_int = char_to_int(c1);       //convert character so it can be used as index in array
+                    char name = SHIP_SYMBOLS[i];
+                    int size = SHIP_SIZES[i];
+                    correct = ship_placement(player1_ships, r1, c1_int, direction, name, size);
+                    if(correct==false){
+                        cout << "Invalid Placement, please try again\n";
+                    }
+                }
+            } else { //runs if direction is invalid
+                cout << "Invalid direction, please try again\n";
+            }
+        } while (correct != true);  
+            displayBoard(player1_ships); //displays where ship is placed
+    }
 }

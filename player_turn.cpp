@@ -1,13 +1,20 @@
 #include "battleship.h"
 
+/**
+ * @brief Controls what happens during a turn for both players
+ * 
+ * @param guesses       arrays relevant to each players turn are passed as parameters
+ * @param ships 
+ * @param player 
+ * @param remaining_ships 
+ * @param remaining_ship_icons 
+ */
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, char remaining_ship_icons[NUM_SHIPS])
 {
     int row;  //player guesses for a location
     char col;
     int col_int = 0;
 
-    
-    
     displayBoard(guesses);
     while (true) {          //loop so player can continue if they get a hit
         cout << endl << endl;
@@ -47,6 +54,13 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
     }
 
 }
+/**
+ * @brief Gets called if there is a hit, and checks for sink and win
+ * 
+ * @param ships 
+ * @param remaining_ship_icons 
+ * @param remaining_ships 
+ */
 void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships)
 {
     

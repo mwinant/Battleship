@@ -39,6 +39,7 @@ char generateRandomCol();
 int generateRandomRow();
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, char remaining_ship_icons[NUM_SHIPS]);
 void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships);
+void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS]);
 
 
 #endif

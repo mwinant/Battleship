@@ -15,8 +15,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
     char col;
     int col_int = 0;
     int player2turn = 0;
-    int firstRow;
-    int firstCol;
+    int firstRow = 0;
+    int firstCol = 0;
 
 
     displayBoard(guesses);
@@ -28,6 +28,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 cout<<"Enter Guess(row col): ";
                 cin>>row>>col;
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
+                stats.p1Total++;
             } while (!valid_guess(guesses, row, col_int));
         } else {
             //player 2 guesses
@@ -36,55 +37,73 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                     if (firstRow==row) {
                         int pickSide = rand()%2; //randomly selects a side to hit
                         if(pickSide == 1){
-                            col = firstCol+(firstCol-col);
+                            col_int = firstCol+(firstCol-col_int);
                         } else {
-                            col = col+(col-firstCol);
+                            col_int = col_int+(col_int-firstCol);
                         }
-                        row = row; //unchanged because row won't change in this case
-                    } else if (firstCol==col) {
+                        row = firstRow;
+                    } else {
                         int pickSide = rand()%2;
                         if(pickSide == 1){
                             row = firstRow+(firstRow-row);
                         } else {
                             row = row+(row-firstRow);
                         }
-                        col = col; //unchanged because column won't change in this case
+                        col_int = firstCol;
                     }
-
+                    player2turn++;
                 } else if (player2turn>0) {
                     firstRow = row;
-                    firstCol = col;
-                    int rowOrCol = rand()%2; //randomly selects whether to pick different row or column
+                    firstCol = col_int;
+                    int rowOrCol = rand()%3; //randomly selects whether to pick different row or column
                     if (rowOrCol == 0) {
-                        row = row + (rand()%3)-1; //randomly selects side to hit
-                        col = col;
-                    } else if (rowOrCol == 1) {
-                        col = col + (rand()%3)-1; //randomly selects side to hit
-                        row = row;
+                        int side = rand()%3;
+                        if(side == 1){ //randomly selects side to hit
+                            row = row+1; 
+                        } else {
+                            row = row-1;
+                        }
+                        col_int = firstCol;
+                    } else {
+                        int side = rand()%2;
+                        if(side == 1){ //randomly selects side to hit
+                            col_int = col_int+1; 
+                        } else {
+                            col_int = col_int-1;
+                        }
+                        row = firstRow;
                     }
+                    player2turn++;
                 } else {
                 row = generateRandomRow();
                 col = generateRandomCol();
                 col_int = char_to_int(col);
+                player2turn++;
                 }
+                stats.p2Total++;
             } while(!valid_guess(guesses, row, col_int));
             cout<< "Player 2 guessed " << row << " "<< col << ".\n\n";
         }
 
         if (hit(ships, row, col_int)) {
             cout<<"That is a hit.\n\n";
+            if (player == 1){
+                stats.p1Hit++;
+            } else {
+                stats.p2Hit++;
+            }
             //get the ship type that was just hit for use in checking for a sink
             //char ship_type = ships[row-1][col_int-1];
             update_boards(ships, guesses, HIT, row, col_int);
             displayBoard(guesses);
             
-            hit_result(ships, remaining_ship_icons, remaining_ships);
+            hit_result(ships, remaining_ship_icons, remaining_ships, player);
 
             continue;  //allows player1 do go again if they hit
         } else {
             update_boards(ships, guesses, MISS, row, col_int);
             displayBoard(guesses);
-            cout<<"That is a miss.\n\n"; 
+            cout<<"\nThat is a miss.\n\n"; 
             break;
         }
     }
@@ -97,7 +116,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
  * @param remaining_ship_icons 
  * @param remaining_ships 
  */
-void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships)
+void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player)
 {
     
     int sunk = sink(ships, remaining_ship_icons);
@@ -107,9 +126,18 @@ void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SH
         //TODO:Function that converts ship symbol to ship type or better way
         cout<<"You sunk their "<<SHIP_NAMES[sunk]<<endl;
         remaining_ships--;
+        if(player == 1){
+            stats.p1ShipsSank++;
+        } else {
+            stats.p2ShipsSank++;
+        }
     }
     if(remaining_ships==0){
         cout << "\nCongratulations! You win! You're a 5-Star Admiral!\n";
+        stats.p1HitPercentage = 100.00*(static_cast<double>(stats.p1Hit)/static_cast<double>(stats.p1Total));
+        stats.p2HitPercentage = 100.00*(static_cast<double>(stats.p2Hit)/static_cast<double>(stats.p2Total));
+        ofstream file;
+        outputStats(file);
         exit(1);
     }
 }

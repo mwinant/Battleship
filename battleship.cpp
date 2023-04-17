@@ -189,3 +189,17 @@ void shipSymbolsToCheck(char array [NUM_SHIPS]){
         array [i] = SHIP_SYMBOLS[i];
     }
 }
+void outputStats (ofstream& file){
+    file.open("battleship.log");
+    if(file.fail()){
+        cout << "file failed to open\n";
+        exit(0);
+    } else { 
+        cout << "file opened successfully\n";
+    }
+    file << "Player 1 ships sank: " << stats.p1ShipsSank << endl;
+    file << "Player 2 ships sank: " << stats.p2ShipsSank << endl << endl;
+    file << "Player 1 hit percentage: " << stats.p1HitPercentage << "%" << endl;
+    file << "Player 2 hit percentage: " << stats.p2HitPercentage << "%" << endl;
+    file.close();
+}

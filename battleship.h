@@ -38,8 +38,19 @@ int selectWhoStartsFirst();
 char generateRandomCol();
 int generateRandomRow();
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, char remaining_ship_icons[NUM_SHIPS]);
-void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships);
+void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player);
 void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS]);
+void outputStats(ofstream& file);
+struct {
+    int p1ShipsSank = 0;
+    int p2ShipsSank = 0;
+    double p1HitPercentage = 0;
+    double p2HitPercentage = 0;
+    int p1Hit = 0;
+    int p2Hit = 0;
+    int p1Total = 0;
+    int p2Total = 0;
 
+} stats;
 
 #endif

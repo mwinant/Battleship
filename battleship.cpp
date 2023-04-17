@@ -12,7 +12,7 @@ void welcomeScreen()
     cout << "Object of the game: Be the first to sink all five of your opponent's ships!\n\n";
     cout << "Rules of the Game: \n";
     cout << "1. This is a two player game.\n";
-    cout << "2. Player1 is you and Player2 is the computer.\n";
+    cout << "2. Player 1 is you and Player 2 is the computer.\n";
     cout << "3. During yor turn, enter the letter-number coordinate that you would like to target.\n";
     cout << "   a. The program will display if it is a HIT or MISS.\n";
     cout << "   b. If it is a HIT, you can enter a new target, otherwise, your turn is over. \n";

@@ -32,15 +32,15 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
         } else {
             //player 2 guesses
             do {
-                if (player2turn>1) {
+                if (player2turn>1) { //if there has been more than one correct hit
                     if (firstRow==row) {
-                        int pickSide = rand()%2;
+                        int pickSide = rand()%2; //randomly selects a side to hit
                         if(pickSide == 1){
                             col = firstCol+(firstCol-col);
                         } else {
                             col = col+(col-firstCol);
                         }
-                        row = row;
+                        row = row; //unchanged because row won't change in this case
                     } else if (firstCol==col) {
                         int pickSide = rand()%2;
                         if(pickSide == 1){
@@ -48,18 +48,18 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         } else {
                             row = row+(row-firstRow);
                         }
-                        col = col;
+                        col = col; //unchanged because column won't change in this case
                     }
 
                 } else if (player2turn>0) {
                     firstRow = row;
                     firstCol = col;
-                    int rowOrCol = rand()%2;
+                    int rowOrCol = rand()%2; //randomly selects whether to pick different row or column
                     if (rowOrCol == 0) {
-                        row = row + (rand()%2)-1;
+                        row = row + (rand()%3)-1; //randomly selects side to hit
                         col = col;
                     } else if (rowOrCol == 1) {
-                        col = col + (rand()%2)-1;
+                        col = col + (rand()%3)-1; //randomly selects side to hit
                         row = row;
                     }
                 } else {

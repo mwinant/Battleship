@@ -14,6 +14,10 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
     int row;  //player guesses for a location
     char col;
     int col_int = 0;
+    int player2turn = 0;
+    int firstRow;
+    int firstCol;
+
 
     displayBoard(guesses);
     while (true) {          //loop so player can continue if they get a hit
@@ -28,9 +32,41 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
         } else {
             //player 2 guesses
             do {
+                if (player2turn>1) {
+                    if (firstRow==row) {
+                        int pickSide = rand()%2;
+                        if(pickSide == 1){
+                            col = firstCol+(firstCol-col);
+                        } else {
+                            col = col+(col-firstCol);
+                        }
+                        row = row;
+                    } else if (firstCol==col) {
+                        int pickSide = rand()%2;
+                        if(pickSide == 1){
+                            row = firstRow+(firstRow-row);
+                        } else {
+                            row = row+(row-firstRow);
+                        }
+                        col = col;
+                    }
+
+                } else if (player2turn>0) {
+                    firstRow = row;
+                    firstCol = col;
+                    int rowOrCol = rand()%2;
+                    if (rowOrCol == 0) {
+                        row = row + (rand()%2)-1;
+                        col = col;
+                    } else if (rowOrCol == 1) {
+                        col = col + (rand()%2)-1;
+                        row = row;
+                    }
+                } else {
                 row = generateRandomRow();
                 col = generateRandomCol();
                 col_int = char_to_int(col);
+                }
             } while(!valid_guess(guesses, row, col_int));
 
         }

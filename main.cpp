@@ -60,7 +60,7 @@ int main()
     randomPlacement(player2_ships);    //creates player 2 board
 
     //TODO - remove this when main loop is totally finished
-    displayBoard(player2_ships); //here to troubleshoot main game
+    //displayBoard(player2_ships); //here to troubleshoot main game
       
     //ship number counts and icon arrays to validate if ships have sunk
     int p1Ships = 5;
@@ -84,7 +84,7 @@ int main()
         //PLAYER 2
         else 
         {
-            cout<<endl<< "It is Player2's turn.\n";
+            cout<<endl<< "It is Player 2's turn.\n\n";
 
             player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons);
            

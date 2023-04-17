@@ -68,11 +68,11 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 col_int = char_to_int(col);
                 }
             } while(!valid_guess(guesses, row, col_int));
-
+            cout<< "Player 2 guessed " << row << " "<< col << ".\n\n";
         }
 
         if (hit(ships, row, col_int)) {
-            cout<<"That is a hit.\n";
+            cout<<"That is a hit.\n\n";
             //get the ship type that was just hit for use in checking for a sink
             //char ship_type = ships[row-1][col_int-1];
             update_boards(ships, guesses, HIT, row, col_int);
@@ -84,7 +84,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
         } else {
             update_boards(ships, guesses, MISS, row, col_int);
             displayBoard(guesses);
-            cout<<"That is a miss.\n"; 
+            cout<<"That is a miss.\n\n"; 
             break;
         }
     }

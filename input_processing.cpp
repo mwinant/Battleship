@@ -131,21 +131,7 @@ void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS])
             
             cout<<"Enter a row, then a column for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces, left to right if horizontal and top to bottom if vertical)\n";
             
-            do {
-                cin.clear();
-                cin.ignore();
-                cout<<"Row: ";
-                cin>>r1;
-
-            } while (r1 < 1 || r1 > 10);
-            do {
-                cin.clear();
-                cin.ignore();
-                cout<<"Column : ";
-                cin>>c1;
-                c1 = tolower(c1);
-
-            } while ((c1<'a' || c1 > 'j') );            
+            get_col_and_row(r1, c1);        
 
             c1_int = char_to_int(c1);       //convert character so it can be used as index in array
             char name = SHIP_SYMBOLS[i];
@@ -162,4 +148,23 @@ void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS])
         
         displayBoard(player1_ships); //displays where ship is placed
     }
+}
+
+void get_col_and_row(int &r1, char &c1)
+{
+    do {
+        cin.clear();
+        cin.ignore();
+        cout<<"Row: ";
+        cin>>r1;
+
+    } while (r1 < 1 || r1 > 10);
+    do {
+        cin.clear();
+        cin.ignore();
+        cout<<"Column : ";
+        cin>>c1;
+        c1 = tolower(c1);
+
+    } while ((c1<'a' || c1 > 'j') );  
 }

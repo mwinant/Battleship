@@ -41,6 +41,9 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
 void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player);
 void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS]);
 void outputStats(ofstream& file);
+void get_col_and_row(int &r1, char &c1);
+
+
 struct {
     int p1ShipsSank = 0;
     int p2ShipsSank = 0;

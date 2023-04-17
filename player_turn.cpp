@@ -25,8 +25,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
         if (player==1) {
             do {
                 //ask Player1 for guess
-                cout<<"Enter Guess(row col): ";
-                cin>>row>>col;
+                cout<<"Enter Guess(row col)\n";
+                get_col_and_row(row, col);
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
                 stats.p1Total++;
             } while (!valid_guess(guesses, row, col_int));

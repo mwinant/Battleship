@@ -44,16 +44,20 @@ void outputStats(ofstream& file);
 void get_col_and_row(int &r1, char &c1);
 
 
-struct {
-    int p1ShipsSank = 0;
-    int p2ShipsSank = 0;
-    double p1HitPercentage = 0;
-    double p2HitPercentage = 0;
-    int p1Hit = 0;
-    int p2Hit = 0;
-    int p1Total = 0;
-    int p2Total = 0;
+struct Statistics {
+    int p1ShipsSank ;
+    int p2ShipsSank ;
+    double p1HitPercentage ;
+    double p2HitPercentage ;
+    int p1Hit ;
+    int p2Hit ;
+    int p1Total ;
+    int p2Total ;
 
-} stats;
+    Statistics()  //constructor list to initialize variables
+    : p1ShipsSank(0), p2ShipsSank(0), p1HitPercentage(0), p2HitPercentage(0), p1Hit(0), p2Hit(0), p1Total(0), p2Total(0)
+    {
+    }
+};
 
 #endif

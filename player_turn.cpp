@@ -17,6 +17,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
     int player2turn = 0;
     int firstRow = 0;
     int firstCol = 0;
+    Statistics stats;
 
 
     displayBoard(guesses);
@@ -118,7 +119,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
  */
 void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player)
 {
-    
+    Statistics stats;
     int sunk = sink(ships, remaining_ship_icons);
 
     if (sunk>-1) {

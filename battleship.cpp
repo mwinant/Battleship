@@ -190,6 +190,7 @@ void shipSymbolsToCheck(char array [NUM_SHIPS]){
     }
 }
 void outputStats (ofstream& file){
+    Statistics stats;
     file.open("battleship.log");
     if(file.fail()){
         cout << "file failed to open\n";

@@ -88,6 +88,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
 
         if (hit(ships, row, col_int)) {
             cout<<"That is a hit.\n\n";
+            ofstream file;
+            outputTurnFile(file, row, col, player, "Hit");
             if (player == 1){
                 stats.p1Hit++;
             } else {
@@ -102,6 +104,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
 
             continue;  //allows player1 do go again if they hit
         } else {
+            ofstream file;
+            outputTurnFile(file, row, col, player, "Miss");
             update_boards(ships, guesses, MISS, row, col_int);
             displayBoard(guesses);
             cout<<"\nThat is a miss.\n\n"; 
@@ -123,10 +127,12 @@ void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SH
     int sunk = sink(ships, remaining_ship_icons);
 
     if (sunk>-1) {
+        ofstream file;
         //tell player they sunk the corresponding ship
         //TODO:Function that converts ship symbol to ship type or better way
         cout<<"You sunk their "<<SHIP_NAMES[sunk]<<endl;
         remaining_ships--;
+        sinkToFile(file, sunk);
         if(player == 1){
             stats.p1ShipsSank++;
         } else {

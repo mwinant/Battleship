@@ -40,6 +40,8 @@ int generateRandomRow();
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, char remaining_ship_icons[NUM_SHIPS]);
 void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player);
 void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS]);
+void outputTurnFile(ofstream& file, int row, char col, int player, string hit);
+void sinkToFile(ofstream& file, int sink);
 void outputStats(ofstream& file);
 void get_col_and_row(int &r1, char &c1);
 

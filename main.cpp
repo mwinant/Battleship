@@ -80,6 +80,7 @@ int main()
             player_turn(player1_guesses,player2_ships, player, p2Ships, p2ShipIcons);
             
             player++;
+            system("clear");
         }
         //PLAYER 2
         else 
@@ -89,6 +90,7 @@ int main()
             player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons);
            
             player--;
+            system("clear");
         }
         
     

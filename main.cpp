@@ -33,7 +33,7 @@ int main()
     initializeBoard(player2_guesses);
 
     ofstream file;
-    file.open("test.txt", std::ofstream::out | std::ofstream::trunc); //reset file state
+    file.open("battleship.log", std::ofstream::out | std::ofstream::trunc); //reset file state
     file.close();
 
 

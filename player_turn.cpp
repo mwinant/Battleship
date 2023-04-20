@@ -9,7 +9,8 @@
  * @param remaining_ships 
  * @param remaining_ship_icons 
  */
-void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, char remaining_ship_icons[NUM_SHIPS])
+void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, 
+                char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS])
 {
     int row;  //player guesses for a location
     char col;
@@ -21,7 +22,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
 
 
     while (true) {          //loop so player can continue if they get a hit
-        cout << endl << endl;
+        cout << endl;
         if (player==1) {
             displayBoard(guesses);
             do {
@@ -82,8 +83,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 player2turn++;
                 }
                 stats.p2Total++;
+            cout<< "Player 2 guessed " << row << " "<< col << ".\n";        //?
             } while(!valid_guess(guesses, row, col_int));
-            cout<< "Player 2 guessed " << row << " "<< col << ".\n";
         }
 
         if (hit(ships, row, col_int)) {
@@ -98,18 +99,23 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
             //get the ship type that was just hit for use in checking for a sink
             //char ship_type = ships[row-1][col_int-1];
             update_boards(ships, guesses, HIT, row, col_int);
-            cout<<endl;
-            displayBoard(guesses);
+            //cout<<endl;
+            //displayBoard(guesses);
             
             hit_result(ships, remaining_ship_icons, remaining_ships, player);
 
-            continue;  //allows player1 do go again if they hit
+            continue;  //allows player do go again if they hit
         } else {
             ofstream file;
             outputTurnFile(file, row, col, player, "Miss");
             update_boards(ships, guesses, MISS, row, col_int);
-            cout<<endl;
-            displayBoard(guesses);
+            if (player ==1) {
+                cout<<endl;
+                displayBoard(guesses);
+            } else {
+                cout<<endl;
+                displayBoard(player_ships);
+            }
             cout<<"\nThat is a miss.\n"; 
             break;
         }

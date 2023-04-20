@@ -55,6 +55,7 @@ int main()
         } else if (choice == 'n') {
             //auto ship placement
             randomPlacement(player1_ships);
+            cout<<"\nHere are your ships.\n";
             displayBoard(player1_ships);
         } else {
             cout << "Invalid input, please try again\n";
@@ -81,7 +82,7 @@ int main()
         //PLAYER 1
         if (player==1)
         {
-            player_turn(player1_guesses,player2_ships, player, p2Ships, p2ShipIcons);
+            player_turn(player1_guesses,player2_ships, player, p2Ships, p2ShipIcons, player1_ships);
             
             player++;
         }
@@ -89,14 +90,15 @@ int main()
         else 
         {
             //cout<<endl<< "It is Player 2's turn.\n\n";
-
-            player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons);
+            
+            player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons, player1_ships);
            
             player--;
         }
         
-    
+        if (player == 2) {
+            system("clear");
+        }
     }
-    system("clear");
     return 0;
 }

@@ -18,7 +18,6 @@
  */
 bool valid_guess(const char board[NUM_ROWS][NUM_COLS], int row, int col)
 {
-    //row -=1;
     if (row<1 || row>NUM_ROWS || col<0 || col >NUM_COLS-1) {
         return false;
     }
@@ -145,6 +144,7 @@ void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS])
             
         } while (correct != true);
         
+        cout<<endl;
         displayBoard(player1_ships); //displays where ship is placed
     }
 }

@@ -42,6 +42,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                             col_int = col_int+(col_int-firstCol);
                         } else if (col_int == 1) {
                             col_int = firstCol+(firstCol-col_int);
+                        } else {
+                            col_int = char_to_int(generateRandomCol());
                         }
                         row = firstRow;
                     } else {
@@ -50,6 +52,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                             row = row+(row-firstRow);
                         } else if (row == 1) {
                             row = firstRow+(firstRow-row);
+                        } else {
+                            generateRandomRow();
                         }
                         col_int = firstCol;
                     }

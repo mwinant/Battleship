@@ -37,18 +37,18 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 if (player2turn>1) { //if there has been more than one correct hit
                     if (firstRow==row) {
                         int pickSide = rand()%2; //randomly selects a side to hit
-                        if(pickSide == 1){
-                            col_int = firstCol+(firstCol-col_int);
-                        } else {
+                        if(pickSide == 1&&firstCol>1){
                             col_int = col_int+(col_int-firstCol);
+                        } else {
+                            col_int = firstCol+(firstCol-col_int);
                         }
                         row = firstRow;
                     } else {
                         int pickSide = rand()%2;
-                        if(pickSide == 1){
-                            row = firstRow+(firstRow-row);
-                        } else {
+                        if(pickSide =!1&&firstRow>1){
                             row = row+(row-firstRow);
+                        } else {
+                            row = firstRow+(firstRow-row);
                         }
                         col_int = firstCol;
                     }
@@ -59,18 +59,18 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                     int rowOrCol = rand()%3; //randomly selects whether to pick different row or column
                     if (rowOrCol == 0) {
                         int side = rand()%3;
-                        if(side == 1){ //randomly selects side to hit
-                            row = row+1; 
+                        if(side != 1&&row>1){ //randomly selects side to hit
+                            row = row-1; 
                         } else {
-                            row = row-1;
+                            row = row+1;
                         }
                         col_int = firstCol;
                     } else {
                         int side = rand()%2;
-                        if(side == 1){ //randomly selects side to hit
-                            col_int = col_int+1; 
+                        if(side != 1&&col_int>1){ //randomly selects side to hit
+                            col_int = col_int-1; 
                         } else {
-                            col_int = col_int-1;
+                            col_int = col_int+1;
                         }
                         row = firstRow;
                     }

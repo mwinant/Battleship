@@ -96,8 +96,9 @@ int main()
             player--;
         }
         
-    
-        system("clear");
+        if (player == 2) {
+            system("clear");
+        }
     }
     return 0;
 }

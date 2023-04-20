@@ -37,17 +37,17 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 if (player2turn>1) { //if there has been more than one correct hit
                     if (firstRow==row) {
                         int pickSide = rand()%2; //randomly selects a side to hit
-                        if(pickSide == 1&&firstCol>1){
+                        if(pickSide == 1 && firstCol < 10){
                             col_int = col_int+(col_int-firstCol);
-                        } else {
+                        } else if (firstCol>1) {
                             col_int = firstCol+(firstCol-col_int);
                         }
                         row = firstRow;
                     } else {
                         int pickSide = rand()%2;
-                        if(pickSide =!1&&firstRow>1){
+                        if(pickSide == 1 && firstRow < 10){
                             row = row+(row-firstRow);
-                        } else {
+                        } else if (firstRow>1) {
                             row = firstRow+(firstRow-row);
                         }
                         col_int = firstCol;

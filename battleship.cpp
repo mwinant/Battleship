@@ -88,7 +88,7 @@ bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direc
             }
         }
     } else if(direction == 'v'||direction == 'V'){              //vertical check
-        if(NUM_ROWS-(row+size)>=0&&col>=0&&col<=NUM_COLS-1){
+        if(NUM_ROWS-(row+size-1)>=0&&col>=0&&col<=NUM_COLS-1){
             for(int i = 0; i<size; i++){
                 int r = row+i-1;
                 if(ships[r][col]!='-'){

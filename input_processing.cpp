@@ -126,7 +126,6 @@ void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS])
             }
         } while (correct != true); 
 
-        //correct  = false;
         do {
             
             cout<<"Enter a row, then a column for your "<<SHIP_NAMES[i]<<" ("<<SHIP_SIZES[i]<<" spaces, left to right if horizontal and top to bottom if vertical)\n";

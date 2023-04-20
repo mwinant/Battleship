@@ -20,10 +20,10 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
     Statistics stats;
 
 
-    displayBoard(guesses);
     while (true) {          //loop so player can continue if they get a hit
         cout << endl << endl;
         if (player==1) {
+            displayBoard(guesses);
             do {
                 //ask Player1 for guess
                 cout<<"Enter Guess(row col)\n";
@@ -83,11 +83,11 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 }
                 stats.p2Total++;
             } while(!valid_guess(guesses, row, col_int));
-            cout<< "Player 2 guessed " << row << " "<< col << ".\n\n";
+            cout<< "Player 2 guessed " << row << " "<< col << ".\n";
         }
 
         if (hit(ships, row, col_int)) {
-            cout<<"That is a hit.\n\n";
+            cout<<"That is a hit. Guess again.\n";
             ofstream file;
             outputTurnFile(file, row, col, player, "Hit");
             if (player == 1){
@@ -98,6 +98,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
             //get the ship type that was just hit for use in checking for a sink
             //char ship_type = ships[row-1][col_int-1];
             update_boards(ships, guesses, HIT, row, col_int);
+            cout<<endl;
             displayBoard(guesses);
             
             hit_result(ships, remaining_ship_icons, remaining_ships, player);
@@ -107,8 +108,9 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
             ofstream file;
             outputTurnFile(file, row, col, player, "Miss");
             update_boards(ships, guesses, MISS, row, col_int);
+            cout<<endl;
             displayBoard(guesses);
-            cout<<"\nThat is a miss.\n\n"; 
+            cout<<"\nThat is a miss.\n"; 
             break;
         }
     }

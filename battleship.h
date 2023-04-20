@@ -56,7 +56,7 @@ struct Statistics {
     int p1Total ;
     int p2Total ;
 
-    Statistics()  //constructor list to initialize variables
+    Statistics()  //constructor with initialization list to initialize variables
     : p1ShipsSank(0), p2ShipsSank(0), p1HitPercentage(0), p2HitPercentage(0), p1Hit(0), p2Hit(0), p1Total(0), p2Total(0)
     {
     }

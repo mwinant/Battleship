@@ -83,7 +83,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         col = int_to_char(col_int);
                         cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
 
-                    } else {
+                    } else if (rowOrCol == 1) {
                         int side = rand()%2;
                         if(side != 1&&col_int>1){ //randomly selects side to hit
                             col_int = col_int-1; 
@@ -94,6 +94,10 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         
                         col = int_to_char(col_int);
                         cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
+                    } else {
+                        row = generateRandomRow();
+                        col = generateRandomCol();
+                        col_int = char_to_int(col);
                     }
                     player2turn++;
                 } else {

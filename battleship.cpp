@@ -210,8 +210,8 @@ void outputStats (ofstream& file, Statistics &stats){
         exit(0);
     }
     file << "Player 1:\n";
-    file << "   shots hit: " << stats.p2Hit << endl;
-    file << "   shots missed: "  << stats.p2Total-stats.p2Hit << endl;
+    file << "   shots hit: " << stats.p1Hit << endl;
+    file << "   shots missed: "  << stats.p1Total-stats.p1Hit << endl;
 
     file << "   ships sank: " << stats.p1ShipsSank << endl;
     file << "   hit percentage: " << stats.p1HitPercentage << "%" << endl << endl;

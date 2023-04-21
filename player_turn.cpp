@@ -35,8 +35,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 cout<<"Enter Guess(row col)\n";
                 get_col_and_row(row, col);
                 col_int = char_to_int(col);      //convert character so it can be used as index in array
-                stats.p1Total++;
             } while (!valid_guess(guesses, row, col_int));
+            stats.p1Total++;
         } else {
             //player 2 guesses
             do {
@@ -52,7 +52,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         }
                         row = firstRow;
                         col = int_to_char(col_int);
-                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
+                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
                     } else {
                         int pickSide = rand()%2;
                         if(pickSide == 1 && row < 8 && row > 1){
@@ -64,7 +64,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         }
                         col_int = firstCol;
                         col = int_to_char(col_int);
-                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
+                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
                     }
                     player2turn++;
                 } else if (player2turn>0) {
@@ -80,7 +80,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         }
                         col_int = firstCol;
                         col = int_to_char(col_int);
-                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
+                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
 
                     } else if (rowOrCol == 1) {
                         int side = rand()%2;
@@ -92,11 +92,12 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         row = firstRow;
                         
                         col = int_to_char(col_int);
-                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
+                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
                     } else {
                         row = generateRandomRow();
                         col = generateRandomCol();
                         col_int = char_to_int(col);
+                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n"; 
                     }
                     player2turn++;
                 } else {
@@ -105,13 +106,14 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                     col = generateRandomCol();
                     col_int = char_to_int(col);
                     player2turn++;
-                    cout<< "Player 2 guessed " << row << " "<< col << ".\n";        
                 }
                 if(!valid_guess(guesses, row, col_int)){
                     goto RETRY;
-                }
-                stats.p2Total++;
+                } else {
+                    cout<< "Player 2 guessed " << row << " "<< col << ".\n";   
+                }    
             } while(!valid_guess(guesses, row, col_int));
+            stats.p2Total++;
         }
 
         if (hit(ships, row, col_int)) {

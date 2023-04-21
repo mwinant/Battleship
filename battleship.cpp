@@ -203,17 +203,25 @@ void shipSymbolsToCheck(char array [NUM_SHIPS]){
  * 
  * @param file 
  */
-void outputStats (ofstream& file){
-    Statistics stats;
+void outputStats (ofstream& file, Statistics stats){
     file.open("battleship.log", fstream::app);
     if(file.fail()){
         cout << "file failed to open\n";
         exit(0);
     }
-    file << "Player 1 ships sank: " << stats.p1ShipsSank << endl;
-    file << "Player 2 ships sank: " << stats.p2ShipsSank << endl << endl;
-    file << "Player 1 hit percentage: " << stats.p1HitPercentage << "%" << endl;
-    file << "Player 2 hit percentage: " << stats.p2HitPercentage << "%" << endl;
+    file << "Player 1:\n";
+    file << "   shots hit: " << stats.p2Hit << endl;
+    file << "   shots missed: "  << stats.p2Total-stats.p2Hit << endl;
+
+    file << "   ships sank: " << stats.p1ShipsSank << endl;
+    file << "   hit percentage: " << stats.p1HitPercentage << "%" << endl << endl;
+
+    file << "Player 2:\n";
+    file << "   shots hit: " << stats.p2Hit << endl;
+    file << "   shots missed: "  << stats.p2Total-stats.p2Hit << endl;
+    file << "   hit percentage: " << stats.p2HitPercentage << "%" << endl;
+    file << "   ships sank: " << stats.p2ShipsSank << endl << endl;
+
     file.close();
 }
 /**
@@ -246,6 +254,6 @@ void sinkToFile(ofstream& file, int sink){
         cout << "file failed to open\n";
         exit(0);
     }
-    file << "   " << SHIP_NAMES[sink] << " Sunk!";
+    file << "   " << SHIP_NAMES[sink] << " Sunk!" << endl;
     file.close();
 }

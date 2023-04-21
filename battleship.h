@@ -15,6 +15,22 @@
 #include <cctype>
 using namespace std;
 
+struct Statistics {
+    int p1ShipsSank ;
+    int p2ShipsSank ;
+    double p1HitPercentage ;
+    double p2HitPercentage ;
+    int p1Hit ;
+    int p2Hit ;
+    int p1Total ;
+    int p2Total ;
+
+    Statistics()  //constructor with initialization list to initialize variables
+    : p1ShipsSank(0), p2ShipsSank(0), p1HitPercentage(0), p2HitPercentage(0), p1Hit(0), p2Hit(0), p1Total(0), p2Total(0)
+    {
+    }
+};
+
 // Global variables and arrays useful in the program
 const int NUM_ROWS = 10;  // number of rows of the battleship game board
 const int NUM_COLS = 10;  // number of columns of the battleship game board
@@ -45,29 +61,13 @@ int selectWhoStartsFirst();
 char generateRandomCol();
 int generateRandomRow();
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, 
-                 char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS]);
-void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player);
+                 char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS], Statistics stats);
+void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player, Statistics stats);
 void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS]);
 void outputTurnFile(ofstream& file, int row, char col, int player, string hit);
 void sinkToFile(ofstream& file, int sink);
-void outputStats(ofstream& file);
+void outputStats(ofstream& file, Statistics stats);
 void get_col_and_row(int &r1, char &c1);
 
-
-struct Statistics {
-    int p1ShipsSank ;
-    int p2ShipsSank ;
-    double p1HitPercentage ;
-    double p2HitPercentage ;
-    int p1Hit ;
-    int p2Hit ;
-    int p1Total ;
-    int p2Total ;
-
-    Statistics()  //constructor with initialization list to initialize variables
-    : p1ShipsSank(0), p2ShipsSank(0), p1HitPercentage(0), p2HitPercentage(0), p1Hit(0), p2Hit(0), p1Total(0), p2Total(0)
-    {
-    }
-};
 
 #endif

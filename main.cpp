@@ -13,7 +13,7 @@ using namespace std;
 
 int main() 
 {  
-
+    Statistics stats;
 
     //Game board arrays
     char player1_ships[NUM_ROWS][NUM_COLS];
@@ -74,7 +74,7 @@ int main()
         //PLAYER 1
         if (player==1)
         {
-            player_turn(player1_guesses,player2_ships, player, p2Ships, p2ShipIcons, player1_ships);
+            player_turn(player1_guesses,player2_ships, player, p2Ships, p2ShipIcons, player1_ships, stats);
             
             player++;
         }
@@ -82,7 +82,7 @@ int main()
         else 
         {
             
-            player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons, player1_ships);
+            player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons, player1_ships, stats);
            
             player--;
         }

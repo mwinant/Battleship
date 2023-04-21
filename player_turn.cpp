@@ -16,7 +16,7 @@
  * @param remaining_ship_icons 
  */
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, 
-                char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS])
+                char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS], Statistics stats)
 {
     int row;  //player guesses for a location
     char col;
@@ -24,7 +24,6 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
     int player2turn = 0;
     int firstRow = 0;
     int firstCol = 0;
-    Statistics stats;
 
 
     while (true) {          //loop so player can continue if they get a hit
@@ -101,11 +100,15 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                     }
                     player2turn++;
                 } else {
+                    RETRY:
                     row = generateRandomRow();
                     col = generateRandomCol();
                     col_int = char_to_int(col);
                     player2turn++;
                     cout<< "Player 2 guessed " << row << " "<< col << ".\n";        
+                }
+                if(!valid_guess(guesses, row, col_int)){
+                    goto RETRY;
                 }
                 stats.p2Total++;
             } while(!valid_guess(guesses, row, col_int));
@@ -125,7 +128,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
             //cout<<endl;
             //displayBoard(guesses);
             
-            hit_result(ships, remaining_ship_icons, remaining_ships, player);
+            hit_result(ships, remaining_ship_icons, remaining_ships, player, stats);
 
             continue;  //allows player do go again if they hit
         } else {
@@ -152,9 +155,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
  * @param remaining_ship_icons 
  * @param remaining_ships 
  */
-void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player)
+void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player, Statistics stats)
 {
-    Statistics stats;
     int sunk = sink(ships, remaining_ship_icons);
 
     if (sunk>-1) {
@@ -175,7 +177,7 @@ void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SH
         stats.p1HitPercentage = 100.00*(static_cast<double>(stats.p1Hit)/static_cast<double>(stats.p1Total));
         stats.p2HitPercentage = 100.00*(static_cast<double>(stats.p2Hit)/static_cast<double>(stats.p2Total));
         ofstream file;
-        outputStats(file);
+        outputStats(file, stats);
         exit(1);
     }
 }

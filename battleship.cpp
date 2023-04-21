@@ -203,7 +203,7 @@ void shipSymbolsToCheck(char array [NUM_SHIPS]){
  * 
  * @param file 
  */
-void outputStats (ofstream& file, Statistics stats){
+void outputStats (ofstream& file, Statistics &stats){
     file.open("battleship.log", fstream::app);
     if(file.fail()){
         cout << "file failed to open\n";
@@ -219,8 +219,9 @@ void outputStats (ofstream& file, Statistics stats){
     file << "Player 2:\n";
     file << "   shots hit: " << stats.p2Hit << endl;
     file << "   shots missed: "  << stats.p2Total-stats.p2Hit << endl;
-    file << "   hit percentage: " << stats.p2HitPercentage << "%" << endl;
     file << "   ships sank: " << stats.p2ShipsSank << endl << endl;
+    file << "   hit percentage: " << stats.p2HitPercentage << "%" << endl;
+
 
     file.close();
 }

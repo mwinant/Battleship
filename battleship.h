@@ -61,12 +61,12 @@ int selectWhoStartsFirst();
 char generateRandomCol();
 int generateRandomRow();
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, 
-                 char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS], Statistics stats);
-void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player, Statistics stats);
+                 char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS], Statistics &stats);
+void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player, Statistics &stats);
 void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS]);
 void outputTurnFile(ofstream& file, int row, char col, int player, string hit);
 void sinkToFile(ofstream& file, int sink);
-void outputStats(ofstream& file, Statistics stats);
+void outputStats(ofstream& file, Statistics &stats);
 void get_col_and_row(int &r1, char &c1);
 
 

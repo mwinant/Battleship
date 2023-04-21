@@ -1,105 +1,113 @@
-Player 2: 7, D. Miss
 Player 1: 5, e. Miss
-Player 2: 1, C. Miss
-Player 1: 4, d. Miss
 Player 2: 5, C. Miss
-Player 1: 3, c. Miss
-Player 2: 5, G. Miss
-Player 1: 2, b. Miss
-Player 2: 3, B. Miss
-Player 1: 1, a. Miss
-Player 2: 7, H. Miss
-Player 1: 6, f. Hit
-Player 1: 7, f. Miss
-Player 2: 1, E. Hit
-Player 2: 1, F. Hit
-Player 2: 1, G. Hit
-Player 2: 1, H. Hit
-Player 2: 1, J. Miss
-Player 1: 6, g. Hit
-Player 1: 6, e. Miss
-Player 2: 2, I. Miss
-Player 1: 8, h. Miss
-Player 2: 9, J. Miss
-Player 1: 6, h. Hit
-   submarine Sunk!
-Player 1: 7, h. Miss
-Player 2: 3, I. Miss
-Player 1: 7, g. Miss
-Player 2: 10, E. Miss
-Player 1: 9, i. Miss
-Player 2: 6, H. Hit
-Player 2: 5, H. Miss
-Player 1: 10, j. Miss
-Player 2: 9, A. Miss
-Player 1: 10, a. Miss
-Player 2: 8, I. Miss
-Player 1: 9, b. Miss
-Player 2: 8, F. Hit
-Player 2: 9, F. Miss
-Player 1: 8, c. Miss
-Player 2: 3, J. Miss
-Player 1: 7, d. Miss
-Player 2: 9, D. Miss
-Player 1: 6, c. Miss
-Player 2: 3, G. Miss
-Player 1: 5, f. Miss
-Player 2: 4, J. Miss
-Player 1: 4, g. Miss
-Player 2: 2, E. Hit
-Player 2: 3, F. Miss
-Player 1: 3, h. Miss
-Player 2: 5, J. Miss
-Player 1: 2, i. Miss
-Player 2: 9, G. Miss
-Player 1: 1, j. Miss
-Player 2: 6, B. Hit
-Player 2: 5, B. Hit
-Player 2: 4, B. Miss
-Player 1: 1, e. Miss
-Player 2: 7, B. Hit
-Player 2: 10, A. Miss
-Player 1: 2, e. Hit
-Player 1: 2, d. Hit
-Player 1: 2, f. Hit
-Player 1: 2, c. Hit
-Player 1: 2, g. Hit
-   carrier Sunk!
-Player 1: 3, e. Hit
-Player 1: 3, d. Hit
-Player 1: 3, f. Hit
-Player 1: 3, g. Hit
-   battleship Sunk!
+Player 1: 4, d. Hit
 Player 1: 4, e. Miss
-Player 2: 5, D. Miss
-Player 1: 7, e. Hit
-Player 1: 8, e. Hit
-Player 1: 9, e. Hit
-   cruiser Sunk!
-Player 1: 10, c. Miss
-Player 2: 1, D. Hit
-   carrier Sunk!
+Player 2: 3, D. Miss
+Player 1: 4, c. Hit
+Player 1: 4, b. Miss
+Player 2: 2, H. Miss
+Player 1: 3, d. Hit
+Player 1: 3, c. Hit
+Player 1: 5, c. Miss
+Player 2: 4, D. Miss
+Player 1: 2, c. Hit
+   submarine Sunk!
+Player 1: 2, d. Hit
+Player 1: 1, d. Hit
+   battleship Sunk!
+Player 1: 1, b. Miss
+Player 2: 10, E. Miss
+Player 1: 6, f. Miss
+Player 2: 4, A. Miss
+Player 1: 7, g. Miss
+Player 2: 10, F. Miss
+Player 1: 8, h. Miss
+Player 2: 5, F. Miss
+Player 1: 9, i. Miss
 Player 2: 1, B. Miss
+Player 1: 10, j. Miss
+Player 2: 6, E. Hit
+Player 2: 8, A. Miss
 Player 1: 10, e. Miss
-Player 2: 1, I. Miss
-Player 1: 10, g. Miss
-Player 2: 4, F. Miss
-Player 1: 10, i. Miss
+Player 2: 1, H. Miss
+Player 1: 10, a. Miss
+Player 2: 6, G. Hit
+Player 2: 7, G. Miss
+Player 1: 9, b. Miss
+Player 2: 5, H. Miss
+Player 1: 1, a. Miss
+Player 2: 7, J. Miss
+Player 1: 2, b. Miss
+Player 2: 1, J. Miss
+Player 1: 8, c. Miss
+Player 2: 6, A. Miss
+Player 1: 7, d. Miss
 Player 2: 7, I. Miss
-Player 1: 9, d. Miss
+Player 1: 6, e. Miss
+Player 2: 2, D. Hit
+Player 2: 2, G. Miss
+Player 1: 5, f. Miss
+Player 2: 3, A. Miss
+Player 1: 4, g. Miss
+Player 2: 5, I. Miss
+Player 1: 3, h. Hit
+Player 1: 2, i. Miss
+Player 2: 1, A. Miss
+Player 1: 1, j. Miss
+Player 2: 5, A. Miss
+Player 1: 2, h. Miss
+Player 2: 9, E. Miss
+Player 1: 3, g. Hit
+Player 1: 3, f. Hit
+Player 1: 3, e. Hit
+Player 1: 3, i. Hit
+   carrier Sunk!
+Player 1: 6, j. Miss
+Player 2: 9, F. Miss
+Player 1: 2, f. Miss
 Player 2: 4, I. Miss
-Player 1: 9, g. Hit
-Player 1: 8, g. Hit
+Player 1: 3, j. Miss
+Player 2: 10, I. Miss
+Player 1: 5, j. Miss
+Player 2: 9, G. Hit
+Player 2: 3, I. Hit
+Player 2: 3, G. Hit
+Player 2: 8, H. Miss
+Player 1: 8, j. Miss
+Player 2: 1, G. Miss
+Player 1: 7, i. Miss
+Player 2: 6, J. Miss
+Player 1: 5, i. Hit
+Player 1: 5, h. Hit
+Player 1: 5, g. Hit
+   cruiser Sunk!
+Player 1: 4, i. Miss
+Player 2: 3, B. Miss
+Player 1: 1, h. Miss
+Player 2: 2, E. Hit
+Player 2: 10, B. Miss
+Player 1: 1, f. Miss
+Player 2: 7, F. Miss
+Player 1: 2, e. Miss
+Player 2: 2, B. Miss
+Player 1: 1, g. Miss
+Player 2: 2, C. Hit
+   submarine Sunk!
+Player 2: 10, A. Miss
+Player 1: 3, a. Hit
+Player 1: 2, a. Miss
+Player 2: 6, H. Miss
+Player 1: 3, b. Hit
    destroyer Sunk!
 Player 1:
-   shots hit: 0
-   shots missed: 0
-   ships sank: 1
-   hit percentage: 100%
+   shots hit: 8
+   shots missed: 35
+   ships sank: 5
+   hit percentage: 32.0755%
 
 Player 2:
-   shots hit: 0
-   shots missed: 0
-   hit percentage: nan%
-   ships sank: 0
+   shots hit: 8
+   shots missed: 35
+   hit percentage: 18.6047%
+   ships sank: 1
 

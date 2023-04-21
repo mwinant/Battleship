@@ -16,7 +16,7 @@
  * @param remaining_ship_icons 
  */
 void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS], int player, int &remaining_ships, 
-                char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS], Statistics stats)
+                char remaining_ship_icons[NUM_SHIPS], char player_ships[NUM_ROWS][NUM_COLS], Statistics& stats)
 {
     int row;  //player guesses for a location
     char col;
@@ -155,7 +155,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
  * @param remaining_ship_icons 
  * @param remaining_ships 
  */
-void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player, Statistics stats)
+void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SHIPS], int &remaining_ships, int player, Statistics& stats)
 {
     int sunk = sink(ships, remaining_ship_icons);
 

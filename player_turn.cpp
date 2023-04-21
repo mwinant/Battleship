@@ -52,7 +52,6 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         }
                         row = firstRow;
                         col = int_to_char(col_int);
-                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
                     } else {
                         int pickSide = rand()%2;
                         if(pickSide == 1 && row < 8 && row > 1){
@@ -64,7 +63,6 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         }
                         col_int = firstCol;
                         col = int_to_char(col_int);
-                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
                     }
                     player2turn++;
                 } else if (player2turn>0) {
@@ -80,7 +78,6 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         }
                         col_int = firstCol;
                         col = int_to_char(col_int);
-                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
 
                     } else if (rowOrCol == 1) {
                         int side = rand()%2;
@@ -92,12 +89,10 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                         row = firstRow;
                         
                         col = int_to_char(col_int);
-                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
                     } else {
                         row = generateRandomRow();
                         col = generateRandomCol();
                         col_int = char_to_int(col);
-                        //cout<< "Player 2 guessed " << row << " "<< col << ".\n"; 
                     }
                     player2turn++;
                 } else {
@@ -127,8 +122,6 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
             }
             
             update_boards(ships, guesses, HIT, row, col_int);
-            //cout<<endl;
-            //displayBoard(guesses);
             
             hit_result(ships, remaining_ship_icons, remaining_ships, player, stats);
 

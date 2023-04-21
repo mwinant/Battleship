@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Wade, Quinton, Mikayla
- * @brief 
+ * @brief ASCII Battelship Game
  * @date 2023-03-22
  */
 
@@ -13,13 +13,7 @@ using namespace std;
 
 int main() 
 {  
-    /* 
-    //ship number counts and icon arrays to validate if ships have sunk
-    int p1Ships = 5;
-    int p2Ships = 5;
-    char p1ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
-    char p2ShipIcons[NUM_SHIPS] = {'c', 'b', 'r', 's', 'd'};
-    */
+
 
     //Game board arrays
     char player1_ships[NUM_ROWS][NUM_COLS];
@@ -64,8 +58,6 @@ int main()
     } while (placement==false);
     randomPlacement(player2_ships);    //creates player 2 board
 
-    //TODO - remove this when main loop is totally finished
-    //displayBoard(player2_ships); //here to troubleshoot main game
       
     //ship number counts and icon arrays to validate if ships have sunk
     int p1Ships = 5;
@@ -89,7 +81,6 @@ int main()
         //PLAYER 2
         else 
         {
-            //cout<<endl<< "It is Player 2's turn.\n\n";
             
             player_turn(player2_guesses, player1_ships, player, p1Ships, p1ShipIcons, player1_ships);
            

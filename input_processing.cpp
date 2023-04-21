@@ -1,6 +1,6 @@
 /**
  * @file input_processing.cpp
- * @author Quinton Sampsel 
+ * @author Quinton, Wade, Mickayla 
  * @brief Functions that handle user input processing for the battleship game
  * @date 2023-03-21
  */
@@ -103,6 +103,18 @@ int char_to_int(char c)
     return c_int;
 }
 /**
+ * @brief converts ints to chars so player two guesses can be displayed to player 1
+ * 
+ * @param c_int 
+ * @return char 
+ */
+char int_to_char(int c_int)
+{
+    char c_char = c_int + 'A';
+    
+    return c_char;
+}
+/**
  * @brief Gets called if player selects manual placement
  * 
  * @param player1_ships 
@@ -148,7 +160,12 @@ void manual_placement(char player1_ships[NUM_ROWS][NUM_COLS])
         displayBoard(player1_ships); //displays where ship is placed
     }
 }
-
+/**
+ * @brief Prompts player for column and row individually to deal with user mixing up int and char
+ * 
+ * @param r1 
+ * @param c1 
+ */
 void get_col_and_row(int &r1, char &c1)
 {
     do {

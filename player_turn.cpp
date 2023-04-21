@@ -1,3 +1,9 @@
+/**
+ * @file player_turn.cpp
+ * @author Quinton, Wade, Mickayla
+ * @brief Contains what happens during each players turn
+ * @date 2023-04-20
+ */
 #include "battleship.h"
 
 /**
@@ -46,6 +52,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                             col_int = char_to_int(generateRandomCol());
                         }
                         row = firstRow;
+                        col = int_to_char(col_int);
+                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
                     } else {
                         int pickSide = rand()%2;
                         if(pickSide == 1 && row < 8 && row > 1){
@@ -56,6 +64,8 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                             generateRandomRow();
                         }
                         col_int = firstCol;
+                        col = int_to_char(col_int);
+                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";  
                     }
                     player2turn++;
                 } else if (player2turn>0) {
@@ -70,6 +80,9 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                             row = row+1;
                         }
                         col_int = firstCol;
+                        col = int_to_char(col_int);
+                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
+
                     } else {
                         int side = rand()%2;
                         if(side != 1&&col_int>1){ //randomly selects side to hit
@@ -78,21 +91,24 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                             col_int = col_int+1;
                         }
                         row = firstRow;
+                        
+                        col = int_to_char(col_int);
+                        cout<< "Player 2 guessed " << row << " "<< col << ".\n";       
                     }
                     player2turn++;
                 } else {
-                row = generateRandomRow();
-                col = generateRandomCol();
-                col_int = char_to_int(col);
-                player2turn++;
+                    row = generateRandomRow();
+                    col = generateRandomCol();
+                    col_int = char_to_int(col);
+                    player2turn++;
+                    cout<< "Player 2 guessed " << row << " "<< col << ".\n";        
                 }
                 stats.p2Total++;
-            cout<< "Player 2 guessed " << row << " "<< col << ".\n";        //?
             } while(!valid_guess(guesses, row, col_int));
         }
 
         if (hit(ships, row, col_int)) {
-            cout<<"That is a hit. Guess again.\n";
+            cout<<"\nThat is a hit. Guess again.\n";
             ofstream file;
             outputTurnFile(file, row, col, player, "Hit");
             if (player == 1){
@@ -100,8 +116,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
             } else {
                 stats.p2Hit++;
             }
-            //get the ship type that was just hit for use in checking for a sink
-            //char ship_type = ships[row-1][col_int-1];
+            
             update_boards(ships, guesses, HIT, row, col_int);
             //cout<<endl;
             //displayBoard(guesses);
@@ -113,6 +128,7 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
             ofstream file;
             outputTurnFile(file, row, col, player, "Miss");
             update_boards(ships, guesses, MISS, row, col_int);
+            cout<<"\nThat is a miss.\n"; 
             if (player ==1) {
                 cout<<endl;
                 displayBoard(guesses);
@@ -120,7 +136,6 @@ void player_turn(char guesses[NUM_ROWS][NUM_COLS], char ships[NUM_ROWS][NUM_COLS
                 cout<<endl;
                 displayBoard(player_ships);
             }
-            cout<<"\nThat is a miss.\n"; 
             break;
         }
     }
@@ -152,7 +167,7 @@ void hit_result(char ships[NUM_ROWS][NUM_COLS], char remaining_ship_icons[NUM_SH
         }
     }
     if(remaining_ships==0){
-        cout << "\nCongratulations! You win! You're a 5-Star Admiral!\n";
+        cout << "\nCongratulations! Player "<<player<<" wins! You're a 5-Star Admiral!\n";
         stats.p1HitPercentage = 100.00*(static_cast<double>(stats.p1Hit)/static_cast<double>(stats.p1Total));
         stats.p2HitPercentage = 100.00*(static_cast<double>(stats.p2Hit)/static_cast<double>(stats.p2Total));
         ofstream file;

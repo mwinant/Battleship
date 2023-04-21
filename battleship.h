@@ -1,3 +1,9 @@
+/**
+ * @file battleship.h
+ * @author Wade, Mickayla, Quinton
+ * @brief Header File For Battleship Game
+ * @date 2023-04-20
+ */
 #ifndef BATTLESHIP_H
 #define BATTLESHIP_H
 
@@ -34,6 +40,7 @@ void displayBoard(char array2[][NUM_COLS]); //need to add showShips parameter wh
 bool ship_placement(char ships[NUM_ROWS][NUM_COLS], int row, int col, char direction, char ship, int size);
 void randomPlacement (char arr[NUM_ROWS][NUM_COLS]);
 int char_to_int(char c);
+char int_to_char(int c_int);
 int selectWhoStartsFirst();
 char generateRandomCol();
 int generateRandomRow();

@@ -1,6 +1,11 @@
+/**
+ * @file battleship.cpp
+ * @author Mickayla, Wade, Quinton 
+ * @brief Functions that get called before main game loop, statistics, and others
+ * @date 2023-04-20
+ */
 #include "battleship.h"
 
-//FUNCTIONS
 
 /**
  * @brief Displays welcome screen and rules to user
@@ -177,18 +182,27 @@ char generateRandomCol() //A-J
  * 
  * @return int 
  */
-int generateRandomRow() //0-9
+int generateRandomRow() //1-10
 {
     int row=rand()%10;
-    return row;
+    return row+1;
 
 }
-
+/**
+ * @brief 
+ * 
+ * @param array 
+ */
 void shipSymbolsToCheck(char array [NUM_SHIPS]){
     for(int i = 0; i < NUM_SHIPS; i++){
         array [i] = SHIP_SYMBOLS[i];
     }
 }
+/**
+ * @brief Writes game statistics to log file
+ * 
+ * @param file 
+ */
 void outputStats (ofstream& file){
     Statistics stats;
     file.open("battleship.log", fstream::app);
@@ -202,7 +216,15 @@ void outputStats (ofstream& file){
     file << "Player 2 hit percentage: " << stats.p2HitPercentage << "%" << endl;
     file.close();
 }
-
+/**
+ * @brief Outputs relevant details from a turn to log file
+ * 
+ * @param file 
+ * @param row 
+ * @param col 
+ * @param player 
+ * @param hit 
+ */
 void outputTurnFile(ofstream& file, int row, char col, int player, string hit){
     file.open("battleship.log", fstream::app);
     if(file.fail()){
@@ -212,7 +234,12 @@ void outputTurnFile(ofstream& file, int row, char col, int player, string hit){
     file << "Player " << player << ": " << row << ", " << col << ". " << hit << endl;
     file.close();
 }
-
+/**
+ * @brief Adds sink tracking to log file
+ * 
+ * @param file 
+ * @param sink 
+ */
 void sinkToFile(ofstream& file, int sink){
     file.open("battleship.log", fstream::app);
     if(file.fail()){
